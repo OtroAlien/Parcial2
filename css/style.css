@@ -10,7 +10,9 @@
     align-items: center;
     background-color: #c27e90;
     width: 100%;
+    display: inline-flex;
 }
+
 .img img{
     height: 10vh;
     margin: 2vw;
@@ -51,6 +53,20 @@ ul{
 .texto{
     background-color: #c27e90;
     color: white;
-    margin: 50px;
+    margin: 5px;
     padding: 10px;
+}
+.contenido{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.inline{
+    display: inline-flex;
+    justify-content: center;
+    padding: 5px;
+    align-items: center;
+}
+.inline img{
+    height: 40px;
+    margin: 10px;
 }
