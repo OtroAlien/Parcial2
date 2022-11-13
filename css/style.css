@@ -14,11 +14,13 @@ body{
     }
 
 nav{
-    background: rgb(151, 151, 151);
+    background: #c27e90;
     font-weight:bold;
     color: #616161;
 }
-
+.logo img{
+    width: 5rem;
+}
 section{
     width: auto;
     margin: 20px;
@@ -40,9 +42,8 @@ h2{
 .capsula2{
     font-weight: lighter;
 }
-.btn-primary{
-    background-color: #616161;
-    border-color: rgb(151, 151, 151);
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+    background-color: #754c57 !important;
 }
 .seguime{
     font-size: large;
