@@ -44,6 +44,8 @@ h2{
 }
 .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
     background-color: #754c57 !important;
+    border-radius: 15px;
+    color: white !important;
 }
 .seguime{
     font-size: large;
@@ -55,4 +57,15 @@ h2{
 }
 a{
     color: #616161;
+}
+footer{
+    background-color: #c27e90;
+}
+.seguime p{
+    color: #754c57;
+}
+.contacto{
+    background: #825561 !important;
+    border-radius: 20px;
+    color: white;
 }
