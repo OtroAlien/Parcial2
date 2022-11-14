@@ -1,4 +1,4 @@
-/*.pattern{
+.pattern{
     position: fixed;
     width: 100vw;
     height: 100vh;
@@ -7,7 +7,8 @@
     background-image:  linear-gradient(30deg, #c27e90 12%, transparent 12.5%, transparent 87%, #c27e90 87.5%, #c27e90), linear-gradient(150deg, #c27e90 12%, transparent 12.5%, transparent 87%, #c27e90 87.5%, #c27e90), linear-gradient(30deg, #c27e90 12%, transparent 12.5%, transparent 87%, #c27e90 87.5%, #c27e90), linear-gradient(150deg, #c27e90 12%, transparent 12.5%, transparent 87%, #c27e90 87.5%, #c27e90), linear-gradient(60deg, #c27e9077 25%, transparent 25.5%, transparent 75%, #c27e9077 75%, #c27e9077), linear-gradient(60deg, #c27e9077 25%, transparent 25.5%, transparent 75%, #c27e9077 75%, #c27e9077);
     background-size: 64px 112px;
     background-position: 0 0, 0 0, 32px 56px, 32px 56px, 0 0, 32px 56px;
-}*/
+    z-index: -1;
+}
 
 body{
     color: rgb(0, 0, 0);
