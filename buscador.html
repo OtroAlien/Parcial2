@@ -57,23 +57,16 @@
             $palabra = $_GET['palabra'];
             echo '<h3>Resultados $palabra </h3>';
 
-            $consulta = "SELECT id_publicacion, id_area, fecha, id_like, contenido, titulo, id_usuario foto FROM publicaciones INNER JOIN areas";
+            $consulta = "SELECT id_publicacion, id_area, fecha, id_like, contenido, titulo, id_usuario foto FROM publicaciones INNER JOIN areas ON publicaciones.id_areas = areas.id_area WHERE areas.area LIKE '%$palabra%' OR publicaciones.titulo LIKE %$palabra%' OR publicaciones.contenido LIKE %$palabra%'";
         }
-
-
 
         Para otras cosas:
         
       <?php 
-<<<<<<< HEAD
       $consulta = "SELECT id_publicacion, id_area, fecha, id_like, contenido, titulo, id_usuario foto FROM publicaciones";
-=======
-      $consulta = SELECT id_publicacion, id_area, fecha, id_like, contenido, titulo, id_usuario foto FROM productos";
->>>>>>> eaaa3ed4efb723650281c24cf8eb264f7acbcd28
       $respuesta = mysqli_query($cnx, $consulta);
       while ($columnas = mysqli_fetch_assoc($respuesta)){}
       ?>
-      -->
       -->
 
 
