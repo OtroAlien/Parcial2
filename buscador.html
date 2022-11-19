@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JorgeMultimedia</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="shortcut icon" href="img/logo.jpeg" type="image/x-icon">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>JorgeMultimedia</title>
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="shortcut icon" href="img/logo.jpeg" type="image/x-icon">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    
+    </head>
+    
 <body>
     <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container-md">
@@ -37,15 +41,54 @@
     </nav>
 
 
+    <aside>
+        <form action="buscador.html" class="form-inline py-4 d-flex justify-content-end">
+            <input type="text" name="palabra" placeholder="Buscar" class="form-control form-control-sm" id="">
+            <input type="submit" value="buscar" class="btn btn-info btn-sm">
+        </form>
+    </aside>
+
+      <!--
+      <?php 
+      $consulta = SELECT id_producto, nombre, precio, foto FROM productos";
+      $respuesta = mysqli_query($cnx, $consulta);
+      while ($columnas = mysqli_fetch_assoc($respuesta)){}
+      ?>
+      -->
 
 
-
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
-
-
+      <div class="container mb80">
+        <div class="page-timeline">
+            <div class="vtimeline-point">
+                <div class="vtimeline-icon">
+                    <i class="fa fa-image"></i>
+                </div>
+                <div class="vtimeline-block">
+                    <ul class="post-meta list-inline">
+                        <li class="list-inline-item">
+                            <i class="fa fa-user-circle-o"></i> <a href="#"><img style="width: 50px;" src="img/logo.jpeg" alt=""></a>
+                        </li>
+                        <li class="list-inline-item">
+                            <i class="fa fa-user-circle-o"></i> <a href="#">Autor/Profesional</a>
+                        </li>
+                        <li class="list-inline-item">
+                            <i class="fa fa-calendar-o"></i> <a href="#">Fecha</a>
+                        </li>
+                    </ul>
+                        <a href="#"><img src="https://via.placeholder.com/700x400" alt="" class="img-fluid mb20"></a>
+                        <a href="#"><h3>Titulo</h3></a>
+                        <p>
+                            Contenido de la publicacion... Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in iaculis ex. Etiam volutpat laoreet urna. Morbi ut tortor nec nulla commodo malesuada sit amet vel lacus. Fusce eget efficitur libero. Morbi dapibus porta quam laoreet placerat.
+                        </p><br>
+                        <div>
+                            <i class="bi bi-suit-heart-fill">MG</i>
+                        </div>
+                        Los comentarios todavia no se como ponerlos <br>
+                        <a href="#" class="btn btn-outline-secondary btn-sm">Ver mas</a>
+                    </div>
+                </div>
+            </div>
+    
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
   </script>
