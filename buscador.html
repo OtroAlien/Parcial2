@@ -48,13 +48,32 @@
             <input type="submit" value="buscar" class="btn btn-info btn-sm">
         </form>
     </aside>
-
+    <h3>Resultados </h3>
       <!--
+
+        Para el buscador:
+
+        if(isset($_GET['palabra'])){
+            $palabra = $_GET['palabra'];
+            echo '<h3>Resultados $palabra </h3>';
+
+            $consulta = "SELECT id_publicacion, id_area, fecha, id_like, contenido, titulo, id_usuario foto FROM publicaciones INNER JOIN areas";
+        }
+
+
+
+        Para otras cosas:
+        
       <?php 
+<<<<<<< HEAD
+      $consulta = "SELECT id_publicacion, id_area, fecha, id_like, contenido, titulo, id_usuario foto FROM publicaciones";
+=======
       $consulta = SELECT id_publicacion, id_area, fecha, id_like, contenido, titulo, id_usuario foto FROM productos";
+>>>>>>> eaaa3ed4efb723650281c24cf8eb264f7acbcd28
       $respuesta = mysqli_query($cnx, $consulta);
       while ($columnas = mysqli_fetch_assoc($respuesta)){}
       ?>
+      -->
       -->
 
 
