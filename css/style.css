@@ -89,3 +89,6 @@ footer{
 .comentario{
     font-size: 1.2rem;
 }
+.likes img{
+    width: 50px;
+}
