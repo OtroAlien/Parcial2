@@ -87,7 +87,7 @@
 
         <div class="lista_posteos">
             <div class="post m-3">
-                <a href="">
+                <a href="#">
                     <div class="posteos container mb80">
                         <div class="page-timeline">
                             <div class="vtimeline-point">
@@ -124,6 +124,42 @@
                                         quam laoreet
                                         placerat.
                                     </p><br>
+                                    <!--
+                                    <?php 
+        if(isset($_SESSION['id_usuario'])){
+            id_usuario = $_SESSION['id_usuario'];
+            $c_like = "SELECT * FROM likes WHERE id_publicacion = ?? AND id_usuario = $id_usuario";
+            $rta_like = mysqli_query($cnx, $c_like);
+            $col_like = mysqli_fetch_assoc($rta_like);
+            if($col_like == false){
+        ?>
+                                    -->
+
+                                    <div class="likes">
+                                        <a href="templates/likear.php?l=1&p=<?php echo $p; ?>"> <img src="img/like.png" alt=""></a>
+
+                                    <!--
+                                    <?php
+                                    }else{}
+                                    ?>
+                                    -->
+                                        <a href="templates/likear.php?l=2&p="><img src="img/liken't.png" alt=""></a>
+                                    </div>
+
+                                    <!--
+                                    <?php
+                                    }
+                                    ?>
+                                    -->
+
+                                    <!--
+                                    <?php            
+        }
+        ?>
+                                    -->
+                                    
+                                    
+                                    <br>
                                     <div class="comentario p-4">
                                         <ul class="post-meta list-inline">
                                             <li class="list-inline-item">
