@@ -3,7 +3,7 @@ session_start();
 require "conexion.php";
 $like = $_GET['l'];
 $id_publicacion = $_GET['p'];
-$id_usuaio = $_SESSION['id_usuario']
+$id_usuaio = $_SESSION['id_usuario'];
 
 if($like == 1){
     $consulta = "INSERT INTO likes (id_usuario, id_publicacion) VALUES ($id_usuaio, $id_publicacion)";
