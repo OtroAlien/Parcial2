@@ -28,13 +28,13 @@
                         <a class="nav-link" href="index.html">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Publicaciones</a>
+                        <a class="nav-link" href="buscador.html">Publicaciones</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#contacto">Contacto</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link btn-primary" href="#contacto">Ingresar</a>
+                        <a class="nav-link btn-primary" href="#">Ingresar</a>
                     </li>
                 </ul>
             </div>
@@ -43,13 +43,141 @@
       <div class="container mt-4 mb-4 p-3 d-flex justify-content-center rounded-4">
         <div class="card p-4">
             <div class=" image d-flex flex-column justify-content-center align-items-center">
+                <div>
                     <img class="pfp" style="width: 100px;" src="img/pfp/default_pfp_Mesa de trabajo 1.png"/>
+
+                    <button type="button" class="btn btn-primary" id="liveToastBtn">Show live toast</button>
+
+                        <div class="toast-container position-fixed bottom-0 end-0 p-3 justify-content-end">
+                        <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                            <div class="toast-header">
+                            <img src="..." class="rounded me-2" alt="...">
+                            <strong class="me-auto">Bootstrap</strong>
+                            <small>11 mins ago</small>
+                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                            </div>
+                            <div class="toast-body">
+                            Hello, world! This is a toast message.
+                            </div>
+                        </div>
+                        </div>
+                </div>
+
                 <span class="name mt-3">Nombre de usuario</span>
-                <div class=" d-flex mt-2">
-                    <button class="btn1 btn-dark">Editar perfil</button>
+                <span class="name mt-3">Area: Diseño Multimedial</span>
+                <br>
+                <div class="btn-group">
+                    <input class="btn btn-primary mx-1 rounded" type="button" value="Mis punlicaciones">
+                    <input class="btn btn-primary mx-1 rounded" type="button" value="Publicaciones que te gustaron">
+                    <input class="btn btn-primary mx-1 rounded" type="button" value="Editar perfil">
                 </div>
                 <div class=" px-2 rounded mt-4 date ">
-                    <h3>Publicaciones que te gustaron</h3>
+                    <h3>Publicaciones que te gustaron:</h3>
+
+
+                    <div class="lista_posteos">
+                        <div class="post m-3">
+                            <a href="#">
+                                <div class="posteos container mb80">
+                                    <div class="page-timeline">
+                                        <div class="vtimeline-point">
+                                            <div class="vtimeline-icon">
+                                                <i class="fa fa-image"></i>
+                                            </div>
+                                            <div class="vtimeline-block p-4">
+                                                <ul class="post-meta list-inline">
+                                                    <li class="list-inline-item">
+                                                        <i class="fa fa-user-circle-o"></i> <a href="#"><img class="pfp"
+                                                                style="width: 50px;" src="img/pfp/default_pfp_Mesa de trabajo 1.png"
+                                                                alt=""></a>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <i class="fa fa-user-circle-o"></i> <a class="post_info"
+                                                            href="#">Autor/Profesional</a>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <i class="fa fa-calendar-o"></i>
+                                                        <p class="post_info" href="#">Publicó</p>
+                                                    </li>
+                                                </ul>
+                                                <a href="#">
+                                                    <h3>Titulo</h3>
+                                                </a>
+                                                <a href="#"><img src="https://via.placeholder.com/700x400" alt=""
+                                                        class="img-fluid mb20"></a>
+                                                <p>
+                                                    Contenido de la publicacion... Lorem ipsum dolor sit amet, consectetur
+                                                    adipiscing elit.
+                                                    Curabitur in iaculis ex. Etiam volutpat laoreet urna. Morbi ut tortor nec nulla
+                                                    commodo
+                                                    malesuada sit amet vel lacus. Fusce eget efficitur libero. Morbi dapibus porta
+                                                    quam laoreet
+                                                    placerat.
+                                                </p><br>
+                                                <!--
+                                                <?php 
+                    if(isset($_SESSION['id_usuario'])){
+                        id_usuario = $_SESSION['id_usuario'];
+                        $c_like = "SELECT * FROM likes WHERE id_publicacion = ?? AND id_usuario = $id_usuario";
+                        $rta_like = mysqli_query($cnx, $c_like);
+                        $col_like = mysqli_fetch_assoc($rta_like);
+                        if($col_like == false){
+                    ?>
+                                                -->
+            
+                                                <div class="likes">
+                                                    <a href="templates/likear.php?l=1&p=<?php echo $p; ?>"> <img src="img/like.png" alt=""></a>
+            
+                                                <!--
+                                                <?php
+                                                }else{}
+                                                ?>
+                                                -->
+                                                    <a href="templates/likear.php?l=2&p="><img src="img/liken't.png" alt=""></a>
+                                                </div>
+            
+                                                <!--
+                                                <?php
+                                                }
+                                                ?>
+                                                -->
+            
+                                                <!--
+                                                <?php            
+                    }
+                    ?>
+                                                -->
+                                                
+                                                
+                                                <br>
+                                                <div class="comentario p-4">
+                                                    <ul class="post-meta list-inline">
+                                                        <li class="list-inline-item">
+                                                            <i class="fa fa-user-circle-o"></i> <a href="#"><img class="pfp"
+                                                                    style="width: 50px;"
+                                                                    src="img/pfp/default_pfp_Mesa de trabajo 1.png" alt=""></a>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <i class="fa fa-user-circle-o"></i> <a class="post_info"
+                                                                href="#">Autor/Profesional</a>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <i class="fa fa-calendar-o"></i>
+                                                            <p class="post_info" href="#">Comentó:</p>
+                                                        </li>
+                                                        <p class="comentario">Lorem ipsum dolor sit amet consectetur, adipisicing
+                                                            elit. Velit dignissimos ratione sequi
+                                                            laboriosam quaerat eos ea nesciunt quis, quidem aliquid maiores eligendi
+                                                            id, veritatis
+                                                            itaque saepe! Voluptas, impedit.</p>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </a>
+                        </div>
+                    </div>
                     
                 </div>
             </div>
@@ -58,9 +186,15 @@
 
 
 
-      
-    <div>
-        <h2 class="text- center">Tus likes/publicaciones</h2>
-    </div>
+    <script>
+        const toastTrigger = document.getElementById('liveToastBtn')
+        const toastLiveExample = document.getElementById('liveToast')
+        if (toastTrigger) {
+          toastTrigger.addEventListener('click', () => {
+            const toast = new bootstrap.Toast(toastLiveExample)
+        
+            toast.show()
+          })
+        }</script>
         
 </body>
