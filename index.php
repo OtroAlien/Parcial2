@@ -19,7 +19,7 @@
     
     
 
-    <php
+    <?php
     if(!isset ($_GET['p'])){
 
         ...esto es lo que se muestra si la sesion no esta iniciada...
