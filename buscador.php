@@ -1,3 +1,7 @@
+<?php
+include "templates/conexion.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -65,25 +69,31 @@
             </div>
         </div>
     </div>
+
+    
         <!--
-
         Para el buscador:
+        -->
 
-        if(isset($_GET['palabra'])){
+        <?php
+    if(isset($_GET['palabra'])){
             $palabra = $_GET['palabra'];
             echo '<h3>Resultados $palabra </h3>';
 
             $consulta = "SELECT id_publicacion, id_area, fecha, id_like, contenido, titulo, id_usuario foto FROM publicaciones INNER JOIN areas ON publicaciones.id_areas = areas.id_area WHERE areas.area LIKE '%$palabra%' OR publicaciones.titulo LIKE %$palabra%' OR publicaciones.contenido LIKE %$palabra%'";
         }
 
-        Para otras cosas:
+        ?>
         
+        <!--
+        Para otras cosas:
+        -->
+
       <?php 
       $consulta = "SELECT id_publicacion, id_area, fecha, id_like, contenido, titulo, id_usuario foto FROM publicaciones";
       $respuesta = mysqli_query($cnx, $consulta);
       while ($columnas = mysqli_fetch_assoc($respuesta)){}
       ?>
-      -->
 
         <div class="lista_posteos">
             <div class="post m-3">
@@ -124,39 +134,31 @@
                                         quam laoreet
                                         placerat.
                                     </p><br>
-                                    <!--
-                                    <?php 
+
+
+        <?php 
         if(isset($_SESSION['id_usuario'])){
-            id_usuario = $_SESSION['id_usuario'];
+            $id_usuario = $_SESSION['id_usuario'];
             $c_like = "SELECT * FROM likes WHERE id_publicacion = ?? AND id_usuario = $id_usuario";
             $rta_like = mysqli_query($cnx, $c_like);
             $col_like = mysqli_fetch_assoc($rta_like);
             if($col_like == false){
         ?>
-                                    -->
 
                                     <div class="likes">
                                         <a href="templates/likear.php?l=1&p=<?php echo $p; ?>"> <img src="img/like.png" alt=""></a>
 
-                                    <!--
                                     <?php
                                     }else{}
                                     ?>
-                                    -->
                                         <a href="templates/likear.php?l=2&p="><img src="img/liken't.png" alt=""></a>
                                     </div>
 
-                                    <!--
+
                                     <?php
                                     }
                                     ?>
-                                    -->
 
-                                    <!--
-                                    <?php            
-        }
-        ?>
-                                    -->
                                     
                                     
                                     <br>
