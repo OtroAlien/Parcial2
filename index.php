@@ -19,13 +19,13 @@ include "templates/conexion.php";
 </head>
 
 <body>
-    
-    <?php
-    if(!isset ($_GET['p'])){
-
-    } ?>
 
     <div class="pattern"></div>
+
+    <?php
+    if(!isset ($_GET['nombre'])){
+        ?>
+
     <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container-md">
             <a class="navbar-brand logo" href="index.php"><img src="img/logo-jorge.png" alt=""></a>
@@ -82,6 +82,37 @@ include "templates/conexion.php";
             </div>
         </div>
     </nav>
+    <?php
+    }else{
+    ?>
+<nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container-md">
+            <a class="navbar-brand logo" href="index.php"><img src="img/logo-jorge.png" alt=""></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="true" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-md-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.php">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="buscador.php">Publicaciones</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contacto">Contacto</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contacto">Cerrar Sesión</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <?php
+    }
+    ?>
     <div id="slideImagenes" class="carousel slide container" data-bs-ride="carousel">
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#slideImagenes" data-bs-slide-to="0" class="active"

@@ -18,13 +18,12 @@ include "templates/conexion.php";
     </head>
     
 <body>
-    
-<?php
-    if(!isset ($_GET['p'])){
+         <div class="pattern"></div>
+   
+    <?php
+        if(!isset ($_GET['nombre'])){
+    ?>
 
-    } ?>
-
-    <div class="pattern"></div>
     <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container-md">
             <a class="navbar-brand logo" href="index.php"><img src="img/logo-jorge.png" alt=""></a>
@@ -44,43 +43,16 @@ include "templates/conexion.php";
                         <a class="nav-link" href="#contacto">Contacto</a>
                     </li>
                     <li class="nav-item">
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        Ingresar
-                        </button>
-
-                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel">Ya tenes cuenta? Ingresa</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <form>
-                                    <div class="mb-3">
-                                        <label for="exampleInputEmail1" class="form-label">Email</label>
-                                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="exampleInputPassword1" class="form-label">Password</label>
-                                        <input type="password" class="form-control" id="exampleInputPassword1">
-                                    </div>
-                                    <button type="submit" class="btn btn-primary">Ingresar</button>
-                                </form>
-                            </div>
-                            <div class="modal-footer">
-                            <div id="emailHelp" class="form-text">¿Aun no tienes cuenta?</div>
-                                
-                                <button type="button" class="btn btn-primary">Registrate</button>
-                            </div>
-                            </div>
-                        </div>
-                        </div>
+                        <a class="nav-link" href="index.php">Cerrar sesión</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
+
+    <?php
+    }
+    ?>
       <div class="container mt-4 mb-4 p-3 d-flex justify-content-center rounded-4">
         <div class="card p-4">
         <button type="button" class="btn btn-primary" id="liveToastBtn">Notificaciones</button>
