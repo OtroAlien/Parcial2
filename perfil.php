@@ -1,3 +1,7 @@
+<?php
+include "templates/conexion.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
