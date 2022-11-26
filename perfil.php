@@ -14,10 +14,16 @@
     </head>
     
 <body>
+    
+<?php
+    if(!isset ($_GET['p'])){
+
+    } ?>
+
     <div class="pattern"></div>
     <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container-md">
-            <a class="navbar-brand logo" href="index.html"><img src="img/logo-jorge.png" alt=""></a>
+            <a class="navbar-brand logo" href="index.php"><img src="img/logo-jorge.png" alt=""></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="true" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -25,16 +31,47 @@
             <div class="collapse navbar-collapse justify-content-md-end" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html">Inicio</a>
+                        <a class="nav-link" href="index.php">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="buscador.html">Publicaciones</a>
+                        <a class="nav-link" href="buscador.php">Publicaciones</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#contacto">Contacto</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link btn-primary" href="#">Ingresar</a>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Ingresar
+                        </button>
+
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Ya tenes cuenta? Ingresa</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form>
+                                    <div class="mb-3">
+                                        <label for="exampleInputEmail1" class="form-label">Email</label>
+                                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="exampleInputPassword1" class="form-label">Password</label>
+                                        <input type="password" class="form-control" id="exampleInputPassword1">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Ingresar</button>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                            <div id="emailHelp" class="form-text">¿Aun no tienes cuenta?</div>
+                                
+                                <button type="button" class="btn btn-primary">Registrate</button>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
                     </li>
                 </ul>
             </div>
@@ -42,25 +79,28 @@
     </nav>
       <div class="container mt-4 mb-4 p-3 d-flex justify-content-center rounded-4">
         <div class="card p-4">
+        <button type="button" class="btn btn-primary" id="liveToastBtn">Notificaciones</button>
+
+            <div class="toast-container position-fixed bottom-0 end-0 p-3">
+            <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header">
+                <img src="..." class="rounded me-2" alt="...">
+                <strong class="me-auto">Bootstrap</strong>
+                <small>11 mins ago</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body">
+                Hello, world! This is a toast message.
+                </div>
+            </div>
+            </div>
+
+
+
             <div class=" image d-flex flex-column justify-content-center align-items-center">
+                
                 <div>
                     <img class="pfp" style="width: 100px;" src="img/pfp/default_pfp_Mesa de trabajo 1.png"/>
-
-                    <button type="button" class="btn btn-primary" id="liveToastBtn">Show live toast</button>
-
-                        <div class="toast-container position-fixed bottom-0 end-0 p-3 justify-content-end">
-                        <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-                            <div class="toast-header">
-                            <img src="..." class="rounded me-2" alt="...">
-                            <strong class="me-auto">Bootstrap</strong>
-                            <small>11 mins ago</small>
-                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                            </div>
-                            <div class="toast-body">
-                            Hello, world! This is a toast message.
-                            </div>
-                        </div>
-                        </div>
                 </div>
 
                 <span class="name mt-3">Nombre de usuario</span>
@@ -117,7 +157,7 @@
                                                 <!--
                                                 <?php 
                     if(isset($_SESSION['id_usuario'])){
-                        id_usuario = $_SESSION['id_usuario'];
+                        $id_usuario = $_SESSION['id_usuario'];
                         $c_like = "SELECT * FROM likes WHERE id_publicacion = ?? AND id_usuario = $id_usuario";
                         $rta_like = mysqli_query($cnx, $c_like);
                         $col_like = mysqli_fetch_assoc($rta_like);
@@ -142,11 +182,7 @@
                                                 ?>
                                                 -->
             
-                                                <!--
-                                                <?php            
-                    }
-                    ?>
-                                                -->
+                                               
                                                 
                                                 
                                                 <br>
