@@ -130,7 +130,7 @@ include "templates/conexion.php";
                                                     quam laoreet
                                                     placerat.
                                                 </p><br>
-                                                <!--
+
                                                 <?php 
                     if(isset($_SESSION['id_usuario'])){
                         $id_usuario = $_SESSION['id_usuario'];
@@ -139,24 +139,22 @@ include "templates/conexion.php";
                         $col_like = mysqli_fetch_assoc($rta_like);
                         if($col_like == false){
                     ?>
-                                                -->
             
                                                 <div class="likes">
                                                     <a href="templates/likear.php?l=1&p=<?php echo $p; ?>"> <img src="img/like.png" alt=""></a>
             
-                                                <!--
+
                                                 <?php
                                                 }else{}
                                                 ?>
-                                                -->
+
                                                     <a href="templates/likear.php?l=2&p="><img src="img/liken't.png" alt=""></a>
                                                 </div>
+                                                
             
-                                                <!--
                                                 <?php
                                                 }
                                                 ?>
-                                                -->
             
                                                
                                                 
