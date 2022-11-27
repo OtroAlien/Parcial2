@@ -115,6 +115,9 @@ require "templates/conexion.php";
     </script>
 
     <?php
+    }else if(isset($_GET['e']) && $_GET['e'] == 2){
+        include "templates/registro.php";
+
     }
     ?>
             </div>
