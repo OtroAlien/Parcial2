@@ -19,7 +19,6 @@ include "templates/conexion.php";
 </head>
 
 <body>
-
     <?php
     if(!isset ($_GET['nombre'])){
 
@@ -284,11 +283,19 @@ include "templates/conexion.php";
 
         <div class="post m-3">
                     <?php   
-                            $id = $_GET ['p'];
-                            $cons_detalle = "SELECT publicaciones.id_publicacion, publicaciones.id_area, publicaciones.fecha, publicaciones.contenido, publicaciones.titulo, publicaciones.id_usuario, usuarios.id_usuario, usuarios.nombre, usuarios.apellido, usuarios.id_foto FROM publicaciones, usuarios WHERE publicaciones.id_usuario = usuarios.id_usuario AND publicaciones.id_publicacion = $id";
-                            $resultado_detalle = mysqli_query($cnx, $cons_detalle);
-                            $detalle = mysqli_fetch_assoc($resultado_detalle)
+                    $id = $_GET ['p'];
+                    $cons_detalle = "SELECT publicaciones.id_publicacion, publicaciones.id_area, publicaciones.fecha, publicaciones.contenido, publicaciones.titulo, publicaciones.id_usuario, usuarios.id_usuario, usuarios.nombre, usuarios.apellido, usuarios.id_foto FROM publicaciones, usuarios WHERE publicaciones.id_usuario = usuarios.id_usuario AND publicaciones.id_publicacion = $id";
+                    $resultado_detalle = mysqli_query($cnx, $cons_detalle);
+                    $detalle = mysqli_fetch_assoc($resultado_detalle);
                     ?>
+                    <!--no funciona!!!(no se porque ayuda)-->
+                    <?php
+                    if($detalle == false){
+                        header("Location: buscador.php");
+                        exit;
+                    }
+                    ?>
+            <!--esto si funciona-->
             <div class="posteos container mb80">
                 <div class="page-timeline">
                     <div class="vtimeline-point">
@@ -431,6 +438,9 @@ include "templates/conexion.php";
             integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
         </script>
         <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+        <?php
+        mysqli_close($cnx);
+        ?>
 </body>
 
 </html>
