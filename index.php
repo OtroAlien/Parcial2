@@ -142,17 +142,19 @@ include "templates/conexion.php";
                         </p>
                     </div>
                     <h2>Tendencias</h2>
-                    <div class="row">
-                        <div class="">
-                            <div class="card" >
-                                <img src="img/post_placeholder.jpg" class="card-img-top" alt="tendencias">
-                                <div class="card-body">
-                                    <p class="card-text">Some quick example text to build on the card title and make up
-                                        the bulk of the card's content.</p>
+                    <a class="text-decoration-none text-reset tendencias" href="">
+                        <div class="row">
+                            <div class="">
+                                <div class="card" >
+                                    <img src="img/post_placeholder.jpg" class="card-img-top" alt="tendencias">
+                                    <div class="card-body">
+                                        <p class="card-text">Some quick example text to build on the card title and make up
+                                            the bulk of the card's content.</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
             </div>
         </div>
