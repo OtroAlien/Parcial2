@@ -30,6 +30,23 @@ include "templates/conexion.php";
                             <h2 class=text-center>Registrate<h2>
                         </div>
                         <form>
+
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col m-auto pl-5">
+                                        <img class="pfp" style="width: 135px;" src="img/pfp/default_pfp_Mesa de trabajo 1.png" alt="">
+                                    </div>
+                                    <div class="col">
+                                        <div class="mb-3">
+                                            <label for="formFile" class="form-label">Foto de perfil</label>
+                                            <input class="form-control" type="file" id="formFile">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                          
                             <div class="mb-3">
                                 <label for="nombre" class="form-label">Nombre</label>
                                 <input type="text" class="form-control" id="nombre" aria-describedby="nombre" required>
