@@ -88,7 +88,7 @@ require "templates/conexion.php";
                 <?php
     }else{
     ?>
-                <div class="collapse navbar-collapse justify-content-md-end" id="navbarNav">                
+                <div class="collapse navbar-collapse justify-content-md-end" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
                             <a class="nav-link" href="perfil.php">Mi perfil</a>
@@ -108,6 +108,11 @@ require "templates/conexion.php";
     <?php
     if (isset($_GET['e']) && $_GET['e'] == 1){
     ?>
+
+    <script>
+        alert("Usuario o contraseña incorrectos")
+        window.location = "index.php";
+    </script>
 
     <?php
     }
