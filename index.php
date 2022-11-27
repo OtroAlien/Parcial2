@@ -1,5 +1,6 @@
 <?php
-include "templates/conexion.php";
+session_start();
+require "templates/conexion.php";
 ?>
 
 <!DOCTYPE html>
@@ -21,7 +22,6 @@ include "templates/conexion.php";
 <body>
 
     <div class="pattern"></div>
-
     
 
     <nav class="navbar navbar-expand-lg navbar-light">
@@ -60,10 +60,10 @@ include "templates/conexion.php";
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form>
+                                <form action="templates/login.php" method="post" enctype="application/x-www-form-urlencoded">
                                     <div class="mb-3">
                                         <label for="exampleInputEmail1" class="form-label">Email</label>
-                                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email">
                                     </div>
                                     <div class="mb-3">
                                         <label for="exampleInputPassword1" class="form-label">Password</label>
@@ -74,8 +74,7 @@ include "templates/conexion.php";
                             </div>
                             <div class="modal-footer">
                             <div id="emailHelp" class="form-text">¿Aun no tienes cuenta?</div>
-                                
-                                <a href="registro.html"><button type="button" class="btn btn-primary">Registrate</button></a>
+                                <a href="registro.php"><button type="button" class="btn btn-primary">Registrate</button></a>
                             </div>
                             </div>
                         </div>
