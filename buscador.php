@@ -148,7 +148,7 @@ include "templates/conexion.php";
         -->
 
         <?php 
-            $consulta = "SELECT publicaciones.id_publicacion, publicaciones.id_area, publicaciones.fecha, publicaciones.contenido, publicaciones.titulo, publicaciones.id_usuario, usuarios.nombre, usuarios.apellido, usuarios.id_foto FROM publicaciones, usuarios";
+            $consulta = "SELECT publicaciones.id_publicacion, publicaciones.id_area, publicaciones.fecha, publicaciones.contenido, publicaciones.titulo, publicaciones.id_usuario FROM publicaciones";
             $respuesta = mysqli_query($cnx, $consulta);
         ?>
 
@@ -214,14 +214,14 @@ include "templates/conexion.php";
                             </p><br>
 
 
-                            <?php 
+                                        <?php 
                                             if(isset($_SESSION['id_usuario'])){
                                                 $id_usuario = $_SESSION['id_usuario'];
                                                 $c_like = "SELECT * FROM likes WHERE id_publicacion = ?? AND id_usuario = $id_usuario";
                                                 $rta_like = mysqli_query($cnx, $c_like);
                                                 $col_like = mysqli_fetch_assoc($rta_like);
                                                 if($col_like == false){
-                                            ?>
+                                        ?>
 
                             <div class="likes">
                                 <a href="templates/likear.php?l=1&p=<?php echo $p; ?>"> <img src="img/like.png"
@@ -241,6 +241,21 @@ include "templates/conexion.php";
 
 
                             <br>
+                            <?php
+                            $post_id_comment=$columnas['id_publicacion'];
+                            $consulta_comentarios = "SELECT * from comentarios INNER JOIN publicaciones
+                            ON comentarios.id_publicacion = publicaciones.id_publicacion
+                            INNER JOIN usuarios ON comentarios.id_usuario = usuarios.id_usuario
+                            WHERE comentarios.id_publicacion = $post_id_comment ORDER BY comentarios.fecha_comentario DESC";
+
+                            $respuesta_comentarios = mysqli_query($cnx, $consulta_comentarios);
+                            while($col_comentario = mysqli_fetch_assoc($respuesta_comentarios)){
+                                $fecha_base_comment=$col_comentario["fecha_comentario"];
+                                $fecha_cortada_comment = explode("-", $fecha_base_comment);
+                                $fecha_cortada_comment_dia = $fecha_cortada_comment[2];
+                                $fecha_cortada_comment_dia_restado = substr($fecha_cortada_comment_dia, 0, 2);
+                                $fecha_invertida_comment =  $fecha_cortada_comment_dia_restado . "/" . $fecha_cortada_comment[1] . "/" . $fecha_cortada_comment[0];
+                            ?>
                             <div class="comentario p-4">
                                 <ul class="post-meta list-inline">
                                     <li class="list-inline-item">
@@ -249,19 +264,18 @@ include "templates/conexion.php";
                                     </li>
                                     <li class="list-inline-item">
                                         <i class="fa fa-user-circle-o"></i> <a class="post_info"
-                                            href="#">Autor/Profesional</a>
+                                            href="#"><?php echo $col_comentario['nombre']; ?> <?php echo $col_comentario['apellido'];?></a>
                                     </li>
                                     <li class="list-inline-item">
                                         <i class="fa fa-calendar-o"></i>
-                                        <p class="post_info" href="#">Comentó</p>
+                                        <p class="post_info" href="#"><?php echo $fecha_invertida_comment?></p>
                                     </li>
-                                    <p class="comentario">Lorem ipsum dolor sit amet consectetur, adipisicing
-                                        elit. Velit dignissimos ratione sequi
-                                        laboriosam quaerat eos ea nesciunt quis, quidem aliquid maiores eligendi
-                                        id, veritatis
-                                        itaque saepe! Voluptas, impedit.</p>
+                                    <p class="comentario"><?php echo $col_comentario["contenido_comentario"]?></p>
                                 </ul>
                             </div>
+                            <?php
+                            }
+                            ?>
                             <div class="text-center"><a class="btn btn-primary rounded text-center" href="buscador.php?p=<?php echo $columnas['id_publicacion']; ?>">Ver mas</a>
                             </div>
                         </div>
@@ -287,6 +301,11 @@ include "templates/conexion.php";
                     $cons_detalle = "SELECT publicaciones.id_publicacion, publicaciones.id_area, publicaciones.fecha, publicaciones.contenido, publicaciones.titulo, publicaciones.id_usuario, usuarios.id_usuario, usuarios.nombre, usuarios.apellido, usuarios.id_foto FROM publicaciones, usuarios WHERE publicaciones.id_usuario = usuarios.id_usuario AND publicaciones.id_publicacion = $id";
                     $resultado_detalle = mysqli_query($cnx, $cons_detalle);
                     $detalle = mysqli_fetch_assoc($resultado_detalle);
+                    $fecha_base=$detalle["fecha"];
+                    $fecha_cortada = explode("-", $fecha_base);
+                    $fecha_cortada_dia = $fecha_cortada[2];
+                    $fecha_cortada_dia_restado = substr($fecha_cortada_dia, 0, 2);
+                    $fecha_invertida =  $fecha_cortada_dia_restado . "/" . $fecha_cortada[1] . "/" . $fecha_cortada[0];
                     ?>
                     <!--no funciona!!!(no se porque ayuda)-->
                     <?php
@@ -315,7 +334,7 @@ include "templates/conexion.php";
                                 </li>
                                 <li class="list-inline-item">
                                     <i class="fa fa-calendar-o"></i>
-                                    <p class="post_info" href="#">Publicó</p>
+                                    <p class="post_info" href="#"><?php echo $fecha_invertida; ?></p>
                                 </li>
                             </ul>
                             <h2 class="text-decoration-none text-reset" href="#">
@@ -366,6 +385,20 @@ include "templates/conexion.php";
                                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"
                                 placeholder="Deja tu comentario aquí"></textarea>
                             </div>
+                            <?php
+                            $consulta_comentarios = "SELECT * from comentarios INNER JOIN publicaciones
+                            ON comentarios.id_publicacion = publicaciones.id_publicacion
+                            INNER JOIN usuarios ON comentarios.id_usuario = usuarios.id_usuario
+                            WHERE comentarios.id_publicacion = $id ORDER BY comentarios.fecha_comentario DESC";
+
+                            $respuesta_comentarios = mysqli_query($cnx, $consulta_comentarios);
+                            while($col_comentario = mysqli_fetch_assoc($respuesta_comentarios)){
+                                $fecha_base_comment=$col_comentario["fecha_comentario"];
+                                $fecha_cortada_comment = explode("-", $fecha_base_comment);
+                                $fecha_cortada_comment_dia = $fecha_cortada_comment[2];
+                                $fecha_cortada_comment_dia_restado = substr($fecha_cortada_comment_dia, 0, 2);
+                                $fecha_invertida_comment =  $fecha_cortada_comment_dia_restado . "/" . $fecha_cortada_comment[1] . "/" . $fecha_cortada_comment[0];
+                            ?>
                             <div class="comentario p-4">
                                 <ul class="post-meta list-inline">
                                     <li class="list-inline-item">
@@ -374,19 +407,18 @@ include "templates/conexion.php";
                                     </li>
                                     <li class="list-inline-item">
                                         <i class="fa fa-user-circle-o"></i> <a class="post_info"
-                                            href="#">Autor/Profesional</a>
+                                            href="#"><?php echo $col_comentario["nombre"]. " " .$col_comentario["apellido"]?></a>
                                     </li>
                                     <li class="list-inline-item">
                                         <i class="fa fa-calendar-o"></i>
-                                        <p class="post_info" href="#">Comentó</p>
+                                        <p class="post_info" href="#"><?php echo $fecha_invertida_comment?></p>
                                     </li>
-                                    <p class="comentario">Lorem ipsum dolor sit amet consectetur, adipisicing
-                                        elit. Velit dignissimos ratione sequi
-                                        laboriosam quaerat eos ea nesciunt quis, quidem aliquid maiores eligendi
-                                        id, veritatis
-                                        itaque saepe! Voluptas, impedit.</p>
+                                    <p class="comentario"><?php echo $col_comentario["contenido_comentario"]?></p>
                                 </ul>
                             </div>
+                            <?php
+                                }
+                            ?>
                             
                         </div>
                     </div>

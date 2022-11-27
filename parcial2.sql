@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2022-11-27 02:33:08
+Date: 2022-11-27 08:28:30
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -47,8 +47,8 @@ INSERT INTO `areas` VALUES ('Publicidad', '11');
 DROP TABLE IF EXISTS `comentarios`;
 CREATE TABLE `comentarios` (
   `id_comentarios` int(11) NOT NULL AUTO_INCREMENT,
-  `fecha` datetime DEFAULT NULL,
-  `contenido` varchar(255) NOT NULL,
+  `fecha_comentario` datetime NOT NULL,
+  `contenido_comentario` varchar(255) NOT NULL,
   `id_publicacion` int(11) NOT NULL,
   `id_usuario` int(11) NOT NULL,
   PRIMARY KEY (`id_comentarios`) USING BTREE,
@@ -138,7 +138,7 @@ CREATE TABLE `fotos_perfil` (
 DROP TABLE IF EXISTS `imagenes`;
 CREATE TABLE `imagenes` (
   `id_imagen` int(11) NOT NULL AUTO_INCREMENT,
-  `contenido` varchar(255) NOT NULL,
+  `contenido_img` varchar(255) NOT NULL,
   `file` varchar(255) NOT NULL,
   PRIMARY KEY (`id_imagen`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
@@ -296,7 +296,7 @@ INSERT INTO `usuarios_areas` VALUES ('9', '5', '6');
 DROP TABLE IF EXISTS `videos`;
 CREATE TABLE `videos` (
   `id_video` int(11) NOT NULL AUTO_INCREMENT,
-  `contenido` varchar(255) NOT NULL,
+  `contenido_video` varchar(255) NOT NULL,
   `file` varchar(255) NOT NULL,
   PRIMARY KEY (`id_video`) USING BTREE,
   UNIQUE KEY `id_video` (`id_video`) USING BTREE
