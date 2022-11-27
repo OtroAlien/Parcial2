@@ -39,7 +39,7 @@ include "templates/conexion.php";
                         <a class="nav-link" href="#contacto">Contacto</a>
                     </li>
                     <li class="nav-item">
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <button type="button" class="btn btn-primary rounded" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         Ingresar
                         </button>
 
@@ -48,7 +48,7 @@ include "templates/conexion.php";
                             <div class="modal-content">
                             <div class="modal-header">
                                 <h1 class="modal-title fs-5" id="exampleModalLabel">Ya tenes cuenta? Ingresa</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                <button type="button" class="btn-close rounded" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
                                 <form>
@@ -61,12 +61,12 @@ include "templates/conexion.php";
                                         <label for="exampleInputPassword1" class="form-label">Password</label>
                                         <input type="password" class="form-control" id="exampleInputPassword1">
                                     </div>
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="submit" class="btn btn-primary rounded">Submit</button>
                                 </form>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Save changes</button>
+                                <button type="button" class="btn btn-secondary rounded" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary rounded">Save changes</button>
                             </div>
                             </div>
                         </div>
@@ -123,7 +123,7 @@ include "templates/conexion.php";
                                 <label for="clave" class="form-label">Ingrese su contraseña nuevamente</label>
                                 <input type="password" class="form-control" id="clave" aria-describedby="clave" required>
                             </div>
-                            <button type="submit" class="btn btn-primary">Registrar</button>
+                            <button type="submit" class="btn btn-primary rounded">Registrar</button>
                         </form>
                     </div>
                 </div>

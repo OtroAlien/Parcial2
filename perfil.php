@@ -55,24 +55,6 @@ include "templates/conexion.php";
     ?>
       <div class="container mt-4 mb-4 p-3 d-flex justify-content-center rounded-4">
         <div class="card p-4">
-        <button type="button" class="btn btn-primary" id="liveToastBtn">Notificaciones</button>
-
-            <div class="toast-container position-fixed bottom-0 end-0 p-3">
-            <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-                <div class="toast-header">
-                <img src="..." class="rounded me-2" alt="...">
-                <strong class="me-auto">Bootstrap</strong>
-                <small>11 mins ago</small>
-                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                </div>
-                <div class="toast-body">
-                Hello, world! This is a toast message.
-                </div>
-            </div>
-            </div>
-
-
-
             <div class=" image d-flex flex-column justify-content-center align-items-center">
                 
                 <div>
@@ -80,10 +62,9 @@ include "templates/conexion.php";
                 </div>
 
                 <span class="name mt-3">Nombre de usuario</span>
-                <span class="name mt-3">Area: Diseño Multimedial</span>
                 <br>
                 <div class="btn-group">
-                    <input class="btn btn-primary mx-1 rounded" type="button" value="Mis punlicaciones">
+                    <input class="btn btn-primary mx-1 rounded" type="button" value="Mis publicaciones">
                     <input class="btn btn-primary mx-1 rounded" type="button" value="Publicaciones que te gustaron">
                     <a href="editarperfil.html"><input class="btn btn-primary mx-1 rounded" type="button" value="Editar perfil"></a>
                 </div>

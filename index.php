@@ -22,6 +22,7 @@ require "templates/conexion.php";
 <body>
 
     <div class="pattern"></div>
+
     
 
     <nav class="navbar navbar-expand-lg navbar-light">
@@ -43,54 +44,59 @@ require "templates/conexion.php";
                         <a class="nav-link" href="#contacto">Contacto</a>
                     </li>
                 </ul>
-            </div>
-        </div>
-        <?php
+                <?php
     if(!isset ($_SESSION['nombre'])){
         ?>
-                        <button type="button" class="btn btn-primary mx-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        Ingresar
-                        </button>
+                <button type="button" class="btn btn-primary mx-3 rounded" data-bs-toggle="modal"
+                    data-bs-target="#exampleModal">
+                    Ingresar
+                </button>
 
-                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
                             <div class="modal-header">
                                 <h1 class="modal-title fs-5" id="exampleModalLabel">Ya tenes cuenta? Ingresa</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                <button type="button" class="btn-close rounded" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
                                 <form action="templates/login.php" method="post" enctype="application/x-www-form-urlencoded">
                                     <div class="mb-3">
                                         <label for="exampleInputEmail1" class="form-label">Email</label>
-                                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email">
+                                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                                     </div>
                                     <div class="mb-3">
                                         <label for="exampleInputPassword1" class="form-label">Password</label>
                                         <input type="password" class="form-control" id="exampleInputPassword1">
                                     </div>
-                                    <button type="submit" class="btn btn-primary">Ingresar</button>
+                                    <button type="submit" class="btn btn-primary rounded">Ingresar</button>
                                 </form>
                             </div>
                             <div class="modal-footer">
                             <div id="emailHelp" class="form-text">¿Aun no tienes cuenta?</div>
-                                <a href="registro.php"><button type="button" class="btn btn-primary">Registrate</button></a>
+                                
+                                <a href="registro.html"><button type="button" class="btn btn-primary">Registrate</button></a>
                             </div>
                             </div>
                         </div>
-                        </div>
-                        
-    <?php
+                    </div>
+                </div>
+
+                <?php
     }else{
     ?>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#contacto">Cerrar Sesión</a>
-                    </li>
-    <?php
+                <li class="nav-item">
+                    <a class="nav-link" href="#contacto">Cerrar Sesión</a>
+                </li>
+                <?php
     }
     ?>
+            </div>
+        </div>
     </nav>
-    
+
     <div id="slideImagenes" class="carousel slide container" data-bs-ride="carousel">
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#slideImagenes" data-bs-slide-to="0" class="active"
@@ -129,17 +135,20 @@ require "templates/conexion.php";
                 </div>
                 <div class="col-12 col-xs-3 col-md-6 col-lg-6">
                     <div>
-                        <p>Hola! Mi nombre es Jorge y esto es Jorge Multimedia, una empresa que fundé en 1997 para que el
-                            mundo vuelva a ser un lugar mágico y divertido, bueno ya no sé que mas escribir. Viva el amor!
+                        <p>Hola! Mi nombre es Jorge y esto es Jorge Multimedia, una empresa que fundé en 1997 para que
+                            el
+                            mundo vuelva a ser un lugar mágico y divertido, bueno ya no sé que mas escribir. Viva el
+                            amor!
                         </p>
                     </div>
-                    <h2>Tendencias</h2> 
+                    <h2>Tendencias</h2>
                     <div class="row">
                         <div class="col-12 col-xs-12 col-md-6 col-lg-6">
                             <div class="card" style="width: 14rem;">
                                 <img src="img/post_placeholder.jpg" class="card-img-top" alt="tendencias">
                                 <div class="card-body">
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                    <p class="card-text">Some quick example text to build on the card title and make up
+                                        the bulk of the card's content.</p>
                                 </div>
                             </div>
                         </div>
@@ -147,7 +156,8 @@ require "templates/conexion.php";
                             <div class="card" style="width: 14rem;">
                                 <img src="img/post_placeholder.jpg" class="card-img-top" alt="tendencias">
                                 <div class="card-body">
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                    <p class="card-text">Some quick example text to build on the card title and make up
+                                        the bulk of the card's content.</p>
                                 </div>
                             </div>
                         </div>
@@ -186,7 +196,7 @@ require "templates/conexion.php";
                                 <label for="mensaje" class="form-label">Mensaje</label>
                                 <textarea class="form-control" id="mensaje" rows="3" required></textarea>
                             </div>
-                            <button type="submit" class="btn btn-primary">Enviar</button>
+                            <button type="submit" class="btn btn-primary rounded">Enviar</button>
                         </form>
                     </div>
                 </div>
@@ -205,16 +215,16 @@ require "templates/conexion.php";
             <div class="row">
                 <ul class="list-inline d-flex flex-row justify-content-center">
                     <li class="list-inline-item">
-                        <a href="https://twitter.com/oltra22" class="text-color-dark text-decoration-none"><i style="color: #754c57;"
-                                class="bi bi-twitter fs-2"></i></a>
+                        <a href="https://twitter.com/oltra22" class="text-color-dark text-decoration-none"><i
+                                style="color: #754c57;" class="bi bi-twitter fs-2"></i></a>
                     </li>
                     <li class="list-inline-item">
                         <a href="https://www.instagram.com/oltra22.art/" class="text-color-dark text-decoration-none">
                             <i style="color: #754c57;" class="bi bi-instagram fs-2"></i></a>
                     </li>
                     <li class="list-inline-item">
-                        <a href="https://www.facebook.com/oltra22" class="color-dark text-decoration-none"><i style="color: #754c57;"
-                                class="bi bi-facebook fs-2 text-color-dark"></i></a>
+                        <a href="https://www.facebook.com/oltra22" class="color-dark text-decoration-none"><i
+                                style="color: #754c57;" class="bi bi-facebook fs-2 text-color-dark"></i></a>
                     </li>
                 </ul>
             </div>
