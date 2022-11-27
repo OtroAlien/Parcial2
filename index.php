@@ -88,12 +88,13 @@ require "templates/conexion.php";
                 <?php
     }else{
     ?>
-                <a href="perfil.php">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#contacto">Contacto</a>
-                    </li>
-                </ul>
-                </a>
+                <div class="collapse navbar-collapse justify-content-md-end" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="perfil.php">Mi perfil</a>
+                        </li>
+                    </ul>
+                </div>
                 <a href="templates/cerrar.php">
                     <button type="button" class="btn btn-primary mx-3 rounded" data-bs-toggle="modal"
                         data-bs-target="#exampleModal">
@@ -107,6 +108,11 @@ require "templates/conexion.php";
     <?php
     if (isset($_GET['e']) && $_GET['e'] == 1){
     ?>
+
+    <script>
+        alert("Usuario o contraseña incorrectos")
+        window.location = "index.php";
+    </script>
 
     <?php
     }
