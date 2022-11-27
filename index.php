@@ -88,13 +88,12 @@ require "templates/conexion.php";
                 <?php
     }else{
     ?>
-                <div class="collapse navbar-collapse justify-content-md-end" id="navbarNav">                
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="perfil.php">Mi perfil</a>
-                        </li>
-                    </ul>
-                </div>
+                <a href="perfil.php">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contacto">Contacto</a>
+                    </li>
+                </ul>
+                </a>
                 <a href="templates/cerrar.php">
                     <button type="button" class="btn btn-primary mx-3 rounded" data-bs-toggle="modal"
                         data-bs-target="#exampleModal">
