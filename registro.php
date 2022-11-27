@@ -89,7 +89,7 @@ include "templates/conexion.php";
                             <div class="container">
                                 <div class="row">
                                     <div class="text-center">
-                                        <img style="width: 10rem; height:10rem;" class="pfp" src="img/pfp/default_pfp_Mesa de trabajo 1.png" alt="">
+                                        <img style="width: 10rem; height:10rem;" class="pfp" src="img/pfp/default_pfp.png" alt="">
                                     </div>
                                     <div class="">
                                         <div class="mb-3 text-center">

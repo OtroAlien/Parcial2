@@ -19,7 +19,6 @@ include "templates/conexion.php";
 </head>
 
 <body>
-
     <?php
     if(!isset ($_GET['nombre'])){
 
@@ -89,7 +88,10 @@ include "templates/conexion.php";
             </div>
         </div>
     </nav>
-
+    <?php
+        if(!isset($_GET['p'])){
+    ?>
+    <!--buscador-->
     <div class="posteos mt-3 p-4 mb-5 container mb80">
         <aside>
             <form action="buscador.html" class="mb-3 form-inline d-flex justify-content-end">
@@ -114,6 +116,18 @@ include "templates/conexion.php";
         </div>
     </div>
 
+    <?php
+    }else{
+    ?>
+    <!--boton volver-->
+    <div class="mt-3 container mb80">
+        <div class=""><a class="btn btn-primary rounded" href="buscador.php"><-</a>
+        </div>
+    </div>
+
+    <?php
+    }
+    ?>
 
     <!--
         Para el buscador:
@@ -133,53 +147,213 @@ include "templates/conexion.php";
         Para otras cosas:
         -->
 
-    <?php 
-      $consulta = "SELECT id_publicacion, id_area, fecha, id_like, contenido, titulo, id_usuario foto FROM publicaciones";
-      $respuesta = mysqli_query($cnx, $consulta);
-      while ($columnas = mysqli_fetch_assoc($respuesta)){}
-      ?>
+        <?php 
+            $consulta = "SELECT publicaciones.id_publicacion, publicaciones.id_area, publicaciones.fecha, publicaciones.contenido, publicaciones.titulo, publicaciones.id_usuario FROM publicaciones";
+            $respuesta = mysqli_query($cnx, $consulta);
+        ?>
 
     <div class="lista_posteos">
+
+        <?php 
+        if(!isset($_GET['p'])){
+        ?>
+
+        <!--maestro-->
+        <?php
+        while ($columnas = mysqli_fetch_assoc($respuesta)){
+        ?>
         <div class="post m-3">
-                <div class="posteos container mb80">
-                    <div class="page-timeline">
-                        <div class="vtimeline-point">
-                            <div class="vtimeline-icon">
-                                <i class="fa fa-image"></i>
+            <div class="posteos container mb80">
+                <div class="page-timeline">
+                    <div class="vtimeline-point">
+                        <div class="vtimeline-icon">
+                            <i class="fa fa-image"></i>
+                        </div>
+                        <div class="vtimeline-block p-4">
+                                    <?php 
+                                        $post_id=$columnas['id_usuario'];
+                                        $consulta_nombres = "SELECT publicaciones.id_usuario, usuarios.id_usuario, usuarios.nombre, usuarios.apellido, usuarios.id_foto FROM publicaciones, usuarios WHERE usuarios.id_usuario = $post_id";
+                                        $respuesta_nombres = mysqli_query($cnx, $consulta_nombres);
+                                        ($nombre = mysqli_fetch_assoc($respuesta_nombres))
+                                    ?> 
+                            <ul class="post-meta list-inline">
+                                <li class="list-inline-item">
+                                    <i class="fa fa-user-circle-o"></i> <a href="buscador.php?p=<?php echo $columnas['id_publicacion']; ?>"><img class="pfp"
+                                            style="width: 50px;" src="img/pfp/default_pfp.png" alt=""></a>
+                                </li>     
+                                <li class="list-inline-item">
+                                    <i class="fa fa-user-circle-o"></i> <a class="post_info"
+                                        href="#">
+                                        <?php
+                                    echo $nombre['nombre'];
+                                ?> 
+
+                                <?php
+                                    echo $nombre['apellido'];
+                                ?>
+                                </a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <i class="fa fa-calendar-o"></i>
+                                    <p class="post_info">Publicó</p>
+                                </li>
+                            </ul>
+                            <a class="text-decoration-none text-reset" href="buscador.php?p=<?php echo $columnas['id_publicacion']; ?>">
+                            <h3>
+                                <?php
+                                    echo $columnas['titulo'];
+                                ?>
+                            </h3>
+                            </a>
+                            <a href="buscador.php?p=<?php echo $columnas['id_publicacion']; ?>"><img src="https://via.placeholder.com/700x400" alt=""
+                                    class="img-fluid mb20"></a>
+                            <p>
+                            <?php
+                            echo $columnas['contenido'];
+                            ?>
+                            </p><br>
+
+
+                                        <?php 
+                                            if(isset($_SESSION['id_usuario'])){
+                                                $id_usuario = $_SESSION['id_usuario'];
+                                                $c_like = "SELECT * FROM likes WHERE id_publicacion = ?? AND id_usuario = $id_usuario";
+                                                $rta_like = mysqli_query($cnx, $c_like);
+                                                $col_like = mysqli_fetch_assoc($rta_like);
+                                                if($col_like == false){
+                                        ?>
+
+                            <div class="likes">
+                                <a href="templates/likear.php?l=1&p=<?php echo $p; ?>"> <img src="img/like.png"
+                                        alt=""></a>
+
+                                <?php
+                                    }else{}
+                                    ?>
+                                <a href="templates/likear.php?l=2&p="><img src="img/liken't.png" alt=""></a>
                             </div>
-                            <div class="vtimeline-block p-4">
+
+
+                            <?php
+                                    }
+                                    ?>
+
+
+
+                            <br>
+                            <?php
+                            $post_id_comment=$columnas['id_publicacion'];
+                            $consulta_comentarios = "SELECT * from comentarios INNER JOIN publicaciones
+                            ON comentarios.id_publicacion = publicaciones.id_publicacion
+                            INNER JOIN usuarios ON comentarios.id_usuario = usuarios.id_usuario
+                            WHERE comentarios.id_publicacion = $post_id_comment ORDER BY comentarios.fecha_comentario DESC";
+
+                            $respuesta_comentarios = mysqli_query($cnx, $consulta_comentarios);
+                            while($col_comentario = mysqli_fetch_assoc($respuesta_comentarios)){
+                                $fecha_base_comment=$col_comentario["fecha_comentario"];
+                                $fecha_cortada_comment = explode("-", $fecha_base_comment);
+                                $fecha_cortada_comment_dia = $fecha_cortada_comment[2];
+                                $fecha_cortada_comment_dia_restado = substr($fecha_cortada_comment_dia, 0, 2);
+                                $fecha_invertida_comment =  $fecha_cortada_comment_dia_restado . "/" . $fecha_cortada_comment[1] . "/" . $fecha_cortada_comment[0];
+                            ?>
+                            <div class="comentario p-4">
                                 <ul class="post-meta list-inline">
                                     <li class="list-inline-item">
                                         <i class="fa fa-user-circle-o"></i> <a href="#"><img class="pfp"
-                                                style="width: 50px;" src="img/pfp/default_pfp_Mesa de trabajo 1.png"
-                                                alt=""></a>
+                                                style="width: 50px;" src="img/pfp/default_pfp.png" alt=""></a>
                                     </li>
                                     <li class="list-inline-item">
                                         <i class="fa fa-user-circle-o"></i> <a class="post_info"
-                                            href="#">Autor/Profesional</a>
+                                            href="#"><?php echo $col_comentario['nombre']; ?> <?php echo $col_comentario['apellido'];?></a>
                                     </li>
                                     <li class="list-inline-item">
                                         <i class="fa fa-calendar-o"></i>
-                                        <p class="post_info" href="#">Publicó</p>
+                                        <p class="post_info" href="#"><?php echo $fecha_invertida_comment?></p>
                                     </li>
+                                    <p class="comentario"><?php echo $col_comentario["contenido_comentario"]?></p>
                                 </ul>
-                                <a href="#">
-                                    <h3>Titulo</h3>
-                                </a>
-                                <a href="#"><img src="https://via.placeholder.com/700x400" alt=""
-                                        class="img-fluid mb20"></a>
-                                <p>
-                                    Contenido de la publicacion... Lorem ipsum dolor sit amet, consectetur
-                                    adipiscing elit.
-                                    Curabitur in iaculis ex. Etiam volutpat laoreet urna. Morbi ut tortor nec nulla
-                                    commodo
-                                    malesuada sit amet vel lacus. Fusce eget efficitur libero. Morbi dapibus porta
-                                    quam laoreet
-                                    placerat.
-                                </p><br>
+                            </div>
+                            <?php
+                            }
+                            ?>
+                            <div class="text-center"><a class="btn btn-primary rounded text-center" href="buscador.php?p=<?php echo $columnas['id_publicacion']; ?>">Ver mas</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        
+        <?php
+        }
+        ?>
+
+        <?php 
+        }else{
+        ?>
+
+        <!--detalle-->
+
+        <div class="post m-3">
+                    <?php   
+                    $id = $_GET ['p'];
+                    $cons_detalle = "SELECT publicaciones.id_publicacion, publicaciones.id_area, publicaciones.fecha, publicaciones.contenido, publicaciones.titulo, publicaciones.id_usuario, usuarios.id_usuario, usuarios.nombre, usuarios.apellido, usuarios.id_foto FROM publicaciones, usuarios WHERE publicaciones.id_usuario = usuarios.id_usuario AND publicaciones.id_publicacion = $id";
+                    $resultado_detalle = mysqli_query($cnx, $cons_detalle);
+                    $detalle = mysqli_fetch_assoc($resultado_detalle);
+                    $fecha_base=$detalle["fecha"];
+                    $fecha_cortada = explode("-", $fecha_base);
+                    $fecha_cortada_dia = $fecha_cortada[2];
+                    $fecha_cortada_dia_restado = substr($fecha_cortada_dia, 0, 2);
+                    $fecha_invertida =  $fecha_cortada_dia_restado . "/" . $fecha_cortada[1] . "/" . $fecha_cortada[0];
+                    ?>
+                    <!--no funciona!!!(no se porque ayuda)-->
+                    <?php
+                    if($detalle == false){
+                        header("Location: buscador.php");
+                        exit;
+                    }
+                    ?>
+            <!--esto si funciona-->
+            <div class="posteos container mb80">
+                <div class="page-timeline">
+                    <div class="vtimeline-point">
+                        <div class="vtimeline-icon">
+                            <i class="fa fa-image"></i>
+                        </div>
+                        <div class="vtimeline-block p-4">
+                            <ul class="post-meta list-inline">
+                                <li class="list-inline-item">
+                                    <i class="fa fa-user-circle-o"></i> <a href="#"><img class="pfp"
+                                            style="width: 50px;" src="img/pfp/default_pfp.png" alt=""></a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <i class="fa fa-user-circle-o"></i> 
+                                    <a class="post_info" href="#"><?php echo $detalle['nombre']; ?> <?php echo $detalle['apellido'];?>
+                                    </a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <i class="fa fa-calendar-o"></i>
+                                    <p class="post_info" href="#"><?php echo $fecha_invertida; ?></p>
+                                </li>
+                            </ul>
+                            <h2 class="text-decoration-none text-reset" href="#">
+                                <h3>
+                                <?php
+                                    echo $detalle['titulo'];
+                                ?>
+                                </h3>
+                            </h2>
+                            <a href="#"><img src="https://via.placeholder.com/700x400" alt=""
+                                    class="img-fluid mb20"></a>
+                            <p>
+                            <?php
+                            echo $detalle['contenido'];
+                            ?>
+                            </p><br>
 
 
-                                <?php 
+                            <?php 
                                             if(isset($_SESSION['id_usuario'])){
                                                 $id_usuario = $_SESSION['id_usuario'];
                                                 $c_like = "SELECT * FROM likes WHERE id_publicacion = ?? AND id_usuario = $id_usuario";
@@ -188,90 +362,117 @@ include "templates/conexion.php";
                                                 if($col_like == false){
                                             ?>
 
-                                <div class="likes">
-                                    <a href="templates/likear.php?l=1&p=<?php echo $p; ?>"> <img src="img/like.png"
-                                            alt=""></a>
-
-                                    <?php
-                                    }else{}
-                                    ?>
-                                    <a href="templates/likear.php?l=2&p="><img src="img/liken't.png" alt=""></a>
-                                </div>
-
+                            <div class="likes">
+                                <a href="templates/likear.php?l=1&p=<?php echo $p; ?>"> <img src="img/like.png"
+                                        alt=""></a>
 
                                 <?php
+                                    }else{}
+                                    ?>
+                                <a href="templates/likear.php?l=2&p="><img src="img/liken't.png" alt=""></a>
+                            </div>
+
+
+                            <?php
                                     }
                                     ?>
 
 
 
-                                <br>
-                                <div class="comentario p-4">
-                                    <ul class="post-meta list-inline">
-                                        <li class="list-inline-item">
-                                            <i class="fa fa-user-circle-o"></i> <a href="#"><img class="pfp"
-                                                    style="width: 50px;" src="img/pfp/default_pfp_Mesa de trabajo 1.png"
-                                                    alt=""></a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <i class="fa fa-user-circle-o"></i> <a class="post_info"
-                                                href="#">Autor/Profesional</a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <i class="fa fa-calendar-o"></i>
-                                            <p class="post_info" href="#">Comentó:</p>
-                                        </li>
-                                        <p class="comentario">Lorem ipsum dolor sit amet consectetur, adipisicing
-                                            elit. Velit dignissimos ratione sequi
-                                            laboriosam quaerat eos ea nesciunt quis, quidem aliquid maiores eligendi
-                                            id, veritatis
-                                            itaque saepe! Voluptas, impedit.</p>
-                                    </ul>
-                                </div>
-                                <div class="text-center"><a class="btn btn-primary rounded text-center" href="#">Ver mas</a></div>
+                            <br>
+                            <div class="mb-3">
+                                <label for="exampleFormControlTextarea1" class="form-label"></label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"
+                                placeholder="Deja tu comentario aquí"></textarea>
                             </div>
+                            <?php
+                            $consulta_comentarios = "SELECT * from comentarios INNER JOIN publicaciones
+                            ON comentarios.id_publicacion = publicaciones.id_publicacion
+                            INNER JOIN usuarios ON comentarios.id_usuario = usuarios.id_usuario
+                            WHERE comentarios.id_publicacion = $id ORDER BY comentarios.fecha_comentario DESC";
+
+                            $respuesta_comentarios = mysqli_query($cnx, $consulta_comentarios);
+                            while($col_comentario = mysqli_fetch_assoc($respuesta_comentarios)){
+                                $fecha_base_comment=$col_comentario["fecha_comentario"];
+                                $fecha_cortada_comment = explode("-", $fecha_base_comment);
+                                $fecha_cortada_comment_dia = $fecha_cortada_comment[2];
+                                $fecha_cortada_comment_dia_restado = substr($fecha_cortada_comment_dia, 0, 2);
+                                $fecha_invertida_comment =  $fecha_cortada_comment_dia_restado . "/" . $fecha_cortada_comment[1] . "/" . $fecha_cortada_comment[0];
+                            ?>
+                            <div class="comentario p-4">
+                                <ul class="post-meta list-inline">
+                                    <li class="list-inline-item">
+                                        <i class="fa fa-user-circle-o"></i> <a href="#"><img class="pfp"
+                                                style="width: 50px;" src="img/pfp/default_pfp.png" alt=""></a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <i class="fa fa-user-circle-o"></i> <a class="post_info"
+                                            href="#"><?php echo $col_comentario["nombre"]. " " .$col_comentario["apellido"]?></a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <i class="fa fa-calendar-o"></i>
+                                        <p class="post_info" href="#"><?php echo $fecha_invertida_comment?></p>
+                                    </li>
+                                    <p class="comentario"><?php echo $col_comentario["contenido_comentario"]?></p>
+                                </ul>
+                            </div>
+                            <?php
+                                }
+                            ?>
+                            
                         </div>
                     </div>
+                </div>
 
+            </div>
         </div>
-    </div>
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <div class="seguime">
-                        <p class="text-center py-3">Redes sociales<p>
+
+        <?php 
+        }
+        ?>
+
+
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="seguime">
+                            <p class="text-center py-3">Redes sociales<p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <ul class="list-inline d-flex flex-row justify-content-center">
+                        <li class="list-inline-item">
+                            <a href="https://twitter.com/oltra22" class="text-color-dark text-decoration-none"><i
+                                    style="color: #754c57;" class="bi bi-twitter fs-2"></i></a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="https://www.instagram.com/oltra22.art/"
+                                class="text-color-dark text-decoration-none">
+                                <i style="color: #754c57;" class="bi bi-instagram fs-2"></i></a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="https://www.facebook.com/oltra22" class="color-dark text-decoration-none"><i
+                                    style="color: #754c57;" class="bi bi-facebook fs-2 text-color-dark"></i></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class=copy>
+                    <div class="text-center font-weight-bold py-3">© 2022 Copyright: <br>
+                        Ciro Gonzalez - Bruno Ramos - Florencia Sueiro
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <ul class="list-inline d-flex flex-row justify-content-center">
-                    <li class="list-inline-item">
-                        <a href="https://twitter.com/oltra22" class="text-color-dark text-decoration-none"><i
-                                style="color: #754c57;" class="bi bi-twitter fs-2"></i></a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a href="https://www.instagram.com/oltra22.art/" class="text-color-dark text-decoration-none">
-                            <i style="color: #754c57;" class="bi bi-instagram fs-2"></i></a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a href="https://www.facebook.com/oltra22" class="color-dark text-decoration-none"><i
-                                style="color: #754c57;" class="bi bi-facebook fs-2 text-color-dark"></i></a>
-                    </li>
-                </ul>
-            </div>
-            <div class=copy>
-                <div class="text-center font-weight-bold py-3">© 2022 Copyright: <br>
-                    Ciro Gonzalez - Bruno Ramos - Florencia Sueiro
-                </div>
-            </div>
-        </div>
-    </footer>
+        </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+        <?php
+        mysqli_close($cnx);
+        ?>
 </body>
 
 </html>

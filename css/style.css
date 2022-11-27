@@ -61,6 +61,9 @@ a{
     text-decoration: none;
     color: #616161;
 }
+.tendencias{
+    text-decoration: none !important;
+}
 footer{
     background-color: #c27e90;
 }
