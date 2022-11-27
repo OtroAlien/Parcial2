@@ -65,11 +65,11 @@ require "templates/conexion.php";
                                 <form action="templates/login.php" method="post" enctype="application/x-www-form-urlencoded">
                                     <div class="mb-3">
                                         <label for="exampleInputEmail1" class="form-label">Email</label>
-                                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email">
                                     </div>
                                     <div class="mb-3">
                                         <label for="exampleInputPassword1" class="form-label">Password</label>
-                                        <input type="password" class="form-control" id="exampleInputPassword1">
+                                        <input type="password" class="form-control" id="exampleInputPassword1" name="clave">
                                     </div>
                                     <button type="submit" class="btn btn-primary rounded">Ingresar</button>
                                 </form>
@@ -88,9 +88,20 @@ require "templates/conexion.php";
     }else{
     ?>
                 <li class="nav-item">
-                    <a class="nav-link" href="#contacto">Cerrar Sesión</a>
+                    <a class="nav-link" href="templates/cerrar.php">Cerrar Sesión</a>
                 </li>
                 <?php
+    }
+    ?>
+
+    <?php
+    if (isset($_GET['e']) && $_GET['e'] == 1){
+    ?>
+    <script>
+        alert('Usuario o clave incorrectos');
+        window.location = "index.php";
+    </script>
+    <?php
     }
     ?>
             </div>
