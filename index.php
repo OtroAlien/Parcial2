@@ -87,7 +87,7 @@ require "templates/conexion.php";
                 <?php
     }else{
     ?>
-                <a href="index.php">
+                <a href="templates/cerrar.php">
                     <button type="button" class="btn btn-primary mx-3 rounded" data-bs-toggle="modal"
                         data-bs-target="#exampleModal">
                         Cerrar Sesion
@@ -100,10 +100,7 @@ require "templates/conexion.php";
     <?php
     if (isset($_GET['e']) && $_GET['e'] == 1){
     ?>
-    <script>
-        alert('Usuario o clave incorrectos');
-        window.location = "index.php";
-    </script>
+
     <?php
     }
     ?>
