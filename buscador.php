@@ -134,52 +134,51 @@ include "templates/conexion.php";
         -->
 
     <?php 
-      $consulta = "SELECT id_publicacion, id_area, fecha, id_like, contenido, titulo, id_usuario foto FROM publicaciones";
+      $consulta = "SELECT id_publicacion, id_area, fecha, contenido, titulo, id_usuario foto FROM publicaciones";
       $respuesta = mysqli_query($cnx, $consulta);
       while ($columnas = mysqli_fetch_assoc($respuesta)){}
       ?>
 
     <div class="lista_posteos">
         <div class="post m-3">
-                <div class="posteos container mb80">
-                    <div class="page-timeline">
-                        <div class="vtimeline-point">
-                            <div class="vtimeline-icon">
-                                <i class="fa fa-image"></i>
-                            </div>
-                            <div class="vtimeline-block p-4">
-                                <ul class="post-meta list-inline">
-                                    <li class="list-inline-item">
-                                        <i class="fa fa-user-circle-o"></i> <a href="#"><img class="pfp"
-                                                style="width: 50px;" src="img/pfp/default_pfp.png"
-                                                alt=""></a>
-                                    </li>
-                                    <li class="list-inline-item">
-                                        <i class="fa fa-user-circle-o"></i> <a class="post_info"
-                                            href="#">Autor/Profesional</a>
-                                    </li>
-                                    <li class="list-inline-item">
-                                        <i class="fa fa-calendar-o"></i>
-                                        <p class="post_info" href="#">Publicó</p>
-                                    </li>
-                                </ul>
-                                <a href="#">
-                                    <h3>Titulo</h3>
-                                </a>
-                                <a href="#"><img src="https://via.placeholder.com/700x400" alt=""
-                                        class="img-fluid mb20"></a>
-                                <p>
-                                    Contenido de la publicacion... Lorem ipsum dolor sit amet, consectetur
-                                    adipiscing elit.
-                                    Curabitur in iaculis ex. Etiam volutpat laoreet urna. Morbi ut tortor nec nulla
-                                    commodo
-                                    malesuada sit amet vel lacus. Fusce eget efficitur libero. Morbi dapibus porta
-                                    quam laoreet
-                                    placerat.
-                                </p><br>
+            <div class="posteos container mb80">
+                <div class="page-timeline">
+                    <div class="vtimeline-point">
+                        <div class="vtimeline-icon">
+                            <i class="fa fa-image"></i>
+                        </div>
+                        <div class="vtimeline-block p-4">
+                            <ul class="post-meta list-inline">
+                                <li class="list-inline-item">
+                                    <i class="fa fa-user-circle-o"></i> <a href="#"><img class="pfp"
+                                            style="width: 50px;" src="img/pfp/default_pfp.png" alt=""></a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <i class="fa fa-user-circle-o"></i> <a class="post_info"
+                                        href="#">Autor/Profesional</a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <i class="fa fa-calendar-o"></i>
+                                    <p class="post_info" href="#">Publicó</p>
+                                </li>
+                            </ul>
+                            <a href="#">
+                                <h3>Titulo</h3>
+                            </a>
+                            <a href="#"><img src="https://via.placeholder.com/700x400" alt=""
+                                    class="img-fluid mb20"></a>
+                            <p>
+                                Contenido de la publicacion... Lorem ipsum dolor sit amet, consectetur
+                                adipiscing elit.
+                                Curabitur in iaculis ex. Etiam volutpat laoreet urna. Morbi ut tortor nec nulla
+                                commodo
+                                malesuada sit amet vel lacus. Fusce eget efficitur libero. Morbi dapibus porta
+                                quam laoreet
+                                placerat.
+                            </p><br>
 
 
-                                <?php 
+                            <?php 
                                             if(isset($_SESSION['id_usuario'])){
                                                 $id_usuario = $_SESSION['id_usuario'];
                                                 $c_like = "SELECT * FROM likes WHERE id_publicacion = ?? AND id_usuario = $id_usuario";
@@ -188,90 +187,91 @@ include "templates/conexion.php";
                                                 if($col_like == false){
                                             ?>
 
-                                <div class="likes">
-                                    <a href="templates/likear.php?l=1&p=<?php echo $p; ?>"> <img src="img/like.png"
-                                            alt=""></a>
-
-                                    <?php
-                                    }else{}
-                                    ?>
-                                    <a href="templates/likear.php?l=2&p="><img src="img/liken't.png" alt=""></a>
-                                </div>
-
+                            <div class="likes">
+                                <a href="templates/likear.php?l=1&p=<?php echo $p; ?>"> <img src="img/like.png"
+                                        alt=""></a>
 
                                 <?php
+                                    }else{}
+                                    ?>
+                                <a href="templates/likear.php?l=2&p="><img src="img/liken't.png" alt=""></a>
+                            </div>
+
+
+                            <?php
                                     }
                                     ?>
 
 
 
-                                <br>
-                                <div class="comentario p-4">
-                                    <ul class="post-meta list-inline">
-                                        <li class="list-inline-item">
-                                            <i class="fa fa-user-circle-o"></i> <a href="#"><img class="pfp"
-                                                    style="width: 50px;" src="img/pfp/default_pfp.png"
-                                                    alt=""></a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <i class="fa fa-user-circle-o"></i> <a class="post_info"
-                                                href="#">Autor/Profesional</a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <i class="fa fa-calendar-o"></i>
-                                            <p class="post_info" href="#">Comentó:</p>
-                                        </li>
-                                        <p class="comentario">Lorem ipsum dolor sit amet consectetur, adipisicing
-                                            elit. Velit dignissimos ratione sequi
-                                            laboriosam quaerat eos ea nesciunt quis, quidem aliquid maiores eligendi
-                                            id, veritatis
-                                            itaque saepe! Voluptas, impedit.</p>
-                                    </ul>
-                                </div>
-                                <div class="text-center"><a class="btn btn-primary rounded text-center" href="#">Ver mas</a></div>
+                            <br>
+                            <div class="comentario p-4">
+                                <ul class="post-meta list-inline">
+                                    <li class="list-inline-item">
+                                        <i class="fa fa-user-circle-o"></i> <a href="#"><img class="pfp"
+                                                style="width: 50px;" src="img/pfp/default_pfp.png" alt=""></a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <i class="fa fa-user-circle-o"></i> <a class="post_info"
+                                            href="#">Autor/Profesional</a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <i class="fa fa-calendar-o"></i>
+                                        <p class="post_info" href="#">Comentó:</p>
+                                    </li>
+                                    <p class="comentario">Lorem ipsum dolor sit amet consectetur, adipisicing
+                                        elit. Velit dignissimos ratione sequi
+                                        laboriosam quaerat eos ea nesciunt quis, quidem aliquid maiores eligendi
+                                        id, veritatis
+                                        itaque saepe! Voluptas, impedit.</p>
+                                </ul>
+                            </div>
+                            <div class="text-center"><a class="btn btn-primary rounded text-center" href="#">Ver mas</a>
                             </div>
                         </div>
                     </div>
+                </div>
 
+            </div>
         </div>
-    </div>
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <div class="seguime">
-                        <p class="text-center py-3">Redes sociales<p>
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="seguime">
+                            <p class="text-center py-3">Redes sociales<p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <ul class="list-inline d-flex flex-row justify-content-center">
+                        <li class="list-inline-item">
+                            <a href="https://twitter.com/oltra22" class="text-color-dark text-decoration-none"><i
+                                    style="color: #754c57;" class="bi bi-twitter fs-2"></i></a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="https://www.instagram.com/oltra22.art/"
+                                class="text-color-dark text-decoration-none">
+                                <i style="color: #754c57;" class="bi bi-instagram fs-2"></i></a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="https://www.facebook.com/oltra22" class="color-dark text-decoration-none"><i
+                                    style="color: #754c57;" class="bi bi-facebook fs-2 text-color-dark"></i></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class=copy>
+                    <div class="text-center font-weight-bold py-3">© 2022 Copyright: <br>
+                        Ciro Gonzalez - Bruno Ramos - Florencia Sueiro
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <ul class="list-inline d-flex flex-row justify-content-center">
-                    <li class="list-inline-item">
-                        <a href="https://twitter.com/oltra22" class="text-color-dark text-decoration-none"><i
-                                style="color: #754c57;" class="bi bi-twitter fs-2"></i></a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a href="https://www.instagram.com/oltra22.art/" class="text-color-dark text-decoration-none">
-                            <i style="color: #754c57;" class="bi bi-instagram fs-2"></i></a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a href="https://www.facebook.com/oltra22" class="color-dark text-decoration-none"><i
-                                style="color: #754c57;" class="bi bi-facebook fs-2 text-color-dark"></i></a>
-                    </li>
-                </ul>
-            </div>
-            <div class=copy>
-                <div class="text-center font-weight-bold py-3">© 2022 Copyright: <br>
-                    Ciro Gonzalez - Bruno Ramos - Florencia Sueiro
-                </div>
-            </div>
-        </div>
-    </footer>
+        </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
 </body>
 
 </html>
