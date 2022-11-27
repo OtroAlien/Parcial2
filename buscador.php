@@ -142,13 +142,15 @@ include "templates/conexion.php";
             $consulta = "SELECT * FROM publicaciones INNER JOIN areas ON publicaciones.id_area = areas.id_area WHERE areas.area LIKE '%$palabra%' OR publicaciones.titulo LIKE '%$palabra%' OR publicaciones.contenido LIKE '%$palabra%'";
 
             $resultado = mysqli_query($cnx, $consulta);
-            $cant_resultados = mysqli_num_rows($resultados);
+            $cant_resultados = mysqli_num_rows($resultado);
 
             if($cant_resultados == 0){
                 echo "<p>No hay resultados para $palabra </p>";
             }
         }else{
-            $consulta = "SELECT id_publicacion, id_area, fecha, contenido, titulo, id_usuario FROM publicaciones";
+            $consulta = "SELECT * FROM publicaciones";
+            $resultado = mysqli_query($cnx, $consulta);
+            echo "sexo";
         }
 
         ?>
@@ -157,10 +159,6 @@ include "templates/conexion.php";
         Para otras cosas:
         -->
 
-        <?php 
-            $consulta = "SELECT publicaciones.id_publicacion, publicaciones.id_area, publicaciones.fecha, publicaciones.contenido, publicaciones.titulo, publicaciones.id_usuario FROM publicaciones";
-            $respuesta = mysqli_query($cnx, $consulta);
-        ?>
 
     <div class="lista_posteos">
 
@@ -170,7 +168,7 @@ include "templates/conexion.php";
 
         <!--maestro-->
         <?php
-        while ($columnas = mysqli_fetch_assoc($respuesta)){
+        while ($columnas = mysqli_fetch_assoc($resultado)){
         ?>
         <div class="post m-3">
             <div class="posteos container mb80">
