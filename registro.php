@@ -84,7 +84,7 @@ include "templates/conexion.php";
                         <div class="col-12 mb-2">
                             <h2 class=text-center>Registrate<h2>
                         </div>
-                        <form>
+                        <form action="templates/registro_con.php" method="post" enctype="application/x-www-form-urlencoded">
 
                             <div class="container">
                                 <div class="row">
@@ -94,7 +94,7 @@ include "templates/conexion.php";
                                     <div class="">
                                         <div class="mb-3 text-center">
                                             <label for="formFile" class="form-label">Foto de perfil</label>
-                                            <input class="form-control" type="file" id="formFile">
+                                            <input name="foto" class="form-control" type="file" id="formFile">
                                         </div>
                                     </div>
                                 </div>
@@ -104,24 +104,24 @@ include "templates/conexion.php";
                           
                             <div class="mb-3">
                                 <label for="nombre" class="form-label">Nombre</label>
-                                <input type="text" class="form-control" id="nombre" aria-describedby="nombre" required>
+                                <input type="text" name="nombre" class="form-control" id="nombre" aria-describedby="nombre" required>
                             </div>
                             <div class="mb-3">
                                 <label for="apellido" class="form-label">Apellido</label>
-                                <input type="text" class="form-control" id="apellido" aria-describedby="apellido"
+                                <input type="text" name="apellido" class="form-control" id="apellido" aria-describedby="apellido"
                                     required>
                             </div>
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="email" aria-describedby="email" required>
+                                <input type="email" name="email" class="form-control" id="email" aria-describedby="email" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="clave" class="form-label">Nombre de Usuario</label>
+                                <input type="password" name="user" class="form-control" id="clave" aria-describedby="clave" required>
                             </div>
                             <div class="mb-3">
                                 <label for="clave" class="form-label">Contraseña</label>
-                                <input type="password" class="form-control" id="clave" aria-describedby="clave" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="clave" class="form-label">Ingrese su contraseña nuevamente</label>
-                                <input type="password" class="form-control" id="clave" aria-describedby="clave" required>
+                                <input type="password" name="clave" class="form-control" id="clave" aria-describedby="clave" required>
                             </div>
                             <button type="submit" class="btn btn-primary rounded">Registrar</button>
                         </form>
