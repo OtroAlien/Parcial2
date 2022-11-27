@@ -137,7 +137,6 @@ include "templates/conexion.php";
     if(isset($_GET['palabra'])){
 
             $palabra = $_GET['palabra'];
-            echo "<h3>Resultados para $palabra </h3>";
 
             $consulta = "SELECT * FROM publicaciones INNER JOIN areas ON publicaciones.id_area = areas.id_area WHERE areas.area LIKE '%$palabra%' OR publicaciones.titulo LIKE '%$palabra%' OR publicaciones.contenido LIKE '%$palabra%'";
 
@@ -150,7 +149,6 @@ include "templates/conexion.php";
         }else{
             $consulta = "SELECT * FROM publicaciones";
             $resultado = mysqli_query($cnx, $consulta);
-            echo "sexo";
         }
 
         ?>
@@ -182,7 +180,12 @@ include "templates/conexion.php";
                                         $post_id=$columnas['id_usuario'];
                                         $consulta_nombres = "SELECT publicaciones.id_usuario, usuarios.id_usuario, usuarios.nombre, usuarios.apellido, usuarios.id_foto FROM publicaciones, usuarios WHERE usuarios.id_usuario = $post_id";
                                         $respuesta_nombres = mysqli_query($cnx, $consulta_nombres);
-                                        ($nombre = mysqli_fetch_assoc($respuesta_nombres))
+                                        ($nombre = mysqli_fetch_assoc($respuesta_nombres));
+                                        $fecha_base=$columnas["fecha"];
+                                        $fecha_cortada = explode("-", $fecha_base);
+                                        $fecha_cortada_dia = $fecha_cortada[2];
+                                        $fecha_cortada_dia_restado = substr($fecha_cortada_dia, 0, 2);
+                                        $fecha_invertida =  $fecha_cortada_dia_restado . "/" . $fecha_cortada[1] . "/" . $fecha_cortada[0];
                                     ?> 
                             <ul class="post-meta list-inline">
                                 <li class="list-inline-item">
@@ -203,7 +206,7 @@ include "templates/conexion.php";
                                 </li>
                                 <li class="list-inline-item">
                                     <i class="fa fa-calendar-o"></i>
-                                    <p class="post_info">Publicó</p>
+                                    <p class="post_info"><?php echo $fecha_invertida; ?></p>
                                 </li>
                             </ul>
                             <a class="text-decoration-none text-reset" href="buscador.php?p=<?php echo $columnas['id_publicacion']; ?>">
