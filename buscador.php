@@ -149,7 +149,7 @@ include "templates/conexion.php";
         -->
 
         <?php 
-            $consulta = "SELECT id_publicacion, id_area, fecha, contenido, titulo, id_usuario FROM publicaciones";
+            $consulta = "SELECT publicaciones.id_publicacion, publicaciones.id_area, publicaciones.fecha, publicaciones.contenido, publicaciones.titulo, publicaciones.id_usuario, usuarios.nombre, usuarios.apellido, usuarios.id_foto FROM publicaciones, usuarios";
             $respuesta = mysqli_query($cnx, $consulta);
         ?>
 
@@ -171,14 +171,28 @@ include "templates/conexion.php";
                             <i class="fa fa-image"></i>
                         </div>
                         <div class="vtimeline-block p-4">
+                                    <?php 
+                                        $post_id=$columnas['id_usuario'];
+                                        $consulta_nombres = "SELECT publicaciones.id_usuario, usuarios.id_usuario, usuarios.nombre, usuarios.apellido, usuarios.id_foto FROM publicaciones, usuarios WHERE usuarios.id_usuario = $post_id";
+                                        $respuesta_nombres = mysqli_query($cnx, $consulta_nombres);
+                                        ($nombre = mysqli_fetch_assoc($respuesta_nombres))
+                                    ?> 
                             <ul class="post-meta list-inline">
                                 <li class="list-inline-item">
                                     <i class="fa fa-user-circle-o"></i> <a href="buscador.php?p=<?php echo $columnas['id_publicacion']; ?>"><img class="pfp"
                                             style="width: 50px;" src="img/pfp/default_pfp.png" alt=""></a>
-                                </li>
+                                </li>     
                                 <li class="list-inline-item">
                                     <i class="fa fa-user-circle-o"></i> <a class="post_info"
-                                        href="#">Autor/Profesional</a>
+                                        href="#">
+                                        <?php
+                                    echo $nombre['nombre'];
+                                ?> 
+
+                                <?php
+                                    echo $nombre['apellido'];
+                                ?>
+                                </a>
                                 </li>
                                 <li class="list-inline-item">
                                     <i class="fa fa-calendar-o"></i>
@@ -271,7 +285,7 @@ include "templates/conexion.php";
         <div class="post m-3">
                     <?php   
                             $id = $_GET ['p'];
-                            $cons_detalle = "SELECT publicaciones.id_publicacion, publicaciones.id_area, publicaciones.fecha, publicaciones.contenido, publicaciones.titulo, publicaciones.id_usuario, usuarios.nombre, usuarios.apellido, usuarios.id_foto FROM publicaciones, usuarios WHERE publicaciones.id_publicacion = $id AND usuarios.id_usuario =$id";
+                            $cons_detalle = "SELECT publicaciones.id_publicacion, publicaciones.id_area, publicaciones.fecha, publicaciones.contenido, publicaciones.titulo, publicaciones.id_usuario, usuarios.id_usuario, usuarios.nombre, usuarios.apellido, usuarios.id_foto FROM publicaciones, usuarios WHERE publicaciones.id_usuario = usuarios.id_usuario AND publicaciones.id_publicacion = $id";
                             $resultado_detalle = mysqli_query($cnx, $cons_detalle);
                             $detalle = mysqli_fetch_assoc($resultado_detalle)
                     ?>
