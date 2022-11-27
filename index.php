@@ -77,7 +77,7 @@ require "templates/conexion.php";
                             <div class="modal-footer">
                                 <div id="emailHelp" class="form-text">¿Aun no tienes cuenta?</div>
 
-                                <a href="registro.html"><button type="button"
+                                <a href="registro.php"><button type="button"
                                         class="btn btn-primary rounded">Registrate</button></a>
                             </div>
                         </div>
@@ -87,9 +87,12 @@ require "templates/conexion.php";
                 <?php
     }else{
     ?>
-                <li class="nav-item">
-                    <a class="nav-link" href="templates/cerrar.php">Cerrar Sesión</a>
-                </li>
+                <a href="index.php">
+                    <button type="button" class="btn btn-primary mx-3 rounded" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal">
+                        Cerrar Sesion
+                    </button>
+                </a>
                 <?php
     }
     ?>
