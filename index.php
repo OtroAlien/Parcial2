@@ -77,7 +77,7 @@ include "templates/conexion.php";
                             <div class="modal-footer">
                                 <div id="emailHelp" class="form-text">¿Aun no tienes cuenta?</div>
 
-                                <a href="registro.html"><button type="button"
+                                <a href="registro.php"><button type="button"
                                         class="btn btn-primary rounded">Registrate</button></a>
                             </div>
                         </div>
