@@ -151,7 +151,7 @@ include "templates/conexion.php";
                                 <ul class="post-meta list-inline">
                                     <li class="list-inline-item">
                                         <i class="fa fa-user-circle-o"></i> <a href="#"><img class="pfp"
-                                                style="width: 50px;" src="img/pfp/default_pfp_Mesa de trabajo 1.png"
+                                                style="width: 50px;" src="img/pfp/default_pfp.png"
                                                 alt=""></a>
                                     </li>
                                     <li class="list-inline-item">
@@ -210,7 +210,7 @@ include "templates/conexion.php";
                                     <ul class="post-meta list-inline">
                                         <li class="list-inline-item">
                                             <i class="fa fa-user-circle-o"></i> <a href="#"><img class="pfp"
-                                                    style="width: 50px;" src="img/pfp/default_pfp_Mesa de trabajo 1.png"
+                                                    style="width: 50px;" src="img/pfp/default_pfp.png"
                                                     alt=""></a>
                                         </li>
                                         <li class="list-inline-item">
