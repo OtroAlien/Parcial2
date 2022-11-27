@@ -64,12 +64,11 @@ include "templates/conexion.php";
                 <span class="name mt-3">Nombre de usuario</span>
                 <br>
                 <div class="btn-group">
-                    <input class="btn btn-primary mx-1 rounded" type="button" value="Mis publicaciones">
-                    <input class="btn btn-primary mx-1 rounded" type="button" value="Publicaciones que te gustaron">
+                    <input class="btn btn-primary mx-1 rounded" type="button" value="Publicaciones">
+                    <input class="btn btn-primary mx-1 rounded" type="button" value="Me gusta">
                     <a href="editarperfil.html"><input class="btn btn-primary mx-1 rounded" type="button" value="Editar perfil"></a>
                 </div>
                 <div class=" px-2 rounded mt-4 date ">
-                    <h3>Publicaciones que te gustaron:</h3>
 
 
                     <div class="lista_posteos">
