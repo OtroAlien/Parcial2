@@ -21,14 +21,13 @@ include "templates/conexion.php";
 <body>
     <div class="pattern"></div>
 
-
     <section id="contacto mt-0 pt-0">
         <div class="contacto mt-0 pt-0">
             <div class="container py-4">
                 <div class="row">
                     <div class="col-12 col-md-10 col-lg-8 mx-auto">
                         <div class="col-12 mb-2">
-                            <h2 class=text-center>Contactanos<h2>
+                            <h2 class=text-center>Registrate<h2>
                         </div>
                         <form>
                             <div class="mb-3">
@@ -45,10 +44,14 @@ include "templates/conexion.php";
                                 <input type="email" class="form-control" id="email" aria-describedby="email" required>
                             </div>
                             <div class="mb-3">
-                                <label for="mensaje" class="form-label">Mensaje</label>
-                                <textarea class="form-control" id="mensaje" rows="3" required></textarea>
+                                <label for="clave" class="form-label">Contraseña</label>
+                                <input type="password" class="form-control" id="clave" aria-describedby="clave" required>
                             </div>
-                            <button type="submit" class="btn btn-primary">Enviar</button>
+                            <div class="mb-3">
+                                <label for="clave" class="form-label">Ingrese su contraseña nuevamente</label>
+                                <input type="password" class="form-control" id="clave" aria-describedby="clave" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Registrar</button>
                         </form>
                     </div>
                 </div>
