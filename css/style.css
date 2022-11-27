@@ -86,6 +86,7 @@ footer{
 }
 .pfp{
     border-radius: 100%;
+    size: 10rem;
 }
 .comentario{
     font-size: 1.2rem;
