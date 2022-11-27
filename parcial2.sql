@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2022-11-27 08:28:30
+Date: 2022-11-27 18:08:32
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -20,7 +20,7 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 DROP TABLE IF EXISTS `areas`;
 CREATE TABLE `areas` (
-  ` area` varchar(255) NOT NULL,
+  `area` varchar(255) NOT NULL,
   `id_area` int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id_area`) USING BTREE,
   UNIQUE KEY `id_area_unica` (`id_area`) USING BTREE

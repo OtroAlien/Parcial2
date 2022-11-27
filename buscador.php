@@ -139,7 +139,7 @@ include "templates/conexion.php";
             $palabra = $_GET['palabra'];
             echo "<h3>Resultados para $palabra </h3>";
 
-            $consulta = "SELECT id_publicacion, id_area, fecha, id_like, contenido, titulo, id_usuario foto FROM publicaciones INNER JOIN areas ON publicaciones.id_areas = areas.id_area WHERE areas.area LIKE '%$palabra%' OR publicaciones.titulo LIKE %$palabra%' OR publicaciones.contenido LIKE %$palabra%'";
+            $consulta = "SELECT * FROM publicaciones INNER JOIN areas ON publicaciones.id_area = areas.id_area WHERE areas.area LIKE '%$palabra%' OR publicaciones.titulo LIKE '%$palabra%' OR publicaciones.contenido LIKE '%$palabra%'";
 
             $resultado = mysqli_query($cnx, $consulta);
             $cant_resultados = mysqli_num_rows($resultados);
@@ -148,7 +148,7 @@ include "templates/conexion.php";
                 echo "<p>No hay resultados para $palabra </p>";
             }
         }else{
-            $consulta = "SELECT id_publicacion, id_area, fecha, id_like, contenido, titulo, id_usuario foto FROM publicaciones";
+            $consulta = "SELECT id_publicacion, id_area, fecha, contenido, titulo, id_usuario FROM publicaciones";
         }
 
         ?>
