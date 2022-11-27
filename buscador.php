@@ -94,7 +94,7 @@ include "templates/conexion.php";
     <!--buscador-->
     <div class="posteos mt-3 p-4 mb-5 container mb80">
         <aside>
-            <form action="buscador.html" class="mb-3 form-inline d-flex justify-content-end">
+            <form action="buscador.php" class="mb-3 form-inline d-flex justify-content-end">
                 <input type="text" name="palabra" placeholder="Buscar" class="form-control form-control-sm" id="">
                 <input type="submit" value="buscar" class="btn btn-info btn-sm rounded">
             </form>
@@ -135,10 +135,20 @@ include "templates/conexion.php";
 
     <?php
     if(isset($_GET['palabra'])){
+
             $palabra = $_GET['palabra'];
-            echo '<h3>Resultados $palabra </h3>';
+            echo "<h3>Resultados para $palabra </h3>";
 
             $consulta = "SELECT id_publicacion, id_area, fecha, id_like, contenido, titulo, id_usuario foto FROM publicaciones INNER JOIN areas ON publicaciones.id_areas = areas.id_area WHERE areas.area LIKE '%$palabra%' OR publicaciones.titulo LIKE %$palabra%' OR publicaciones.contenido LIKE %$palabra%'";
+
+            $resultado = mysqli_query($cnx, $consulta);
+            $cant_resultados = mysqli_num_rows($resultados);
+
+            if($cant_resultados == 0){
+                echo "<p>No hay resultados para $palabra </p>";
+            }
+        }else{
+            $consulta = "SELECT id_publicacion, id_area, fecha, id_like, contenido, titulo, id_usuario foto FROM publicaciones";
         }
 
         ?>
