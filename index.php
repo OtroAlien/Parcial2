@@ -44,8 +44,10 @@ include "templates/conexion.php";
                     <li class="nav-item">
                         <a class="nav-link" href="#contacto">Contacto</a>
                     </li>
-                    <li class="nav-item">
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                </ul>
+            </div>
+        </div>
+                        <button type="button" class="btn btn-primary mx-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         Ingresar
                         </button>
 
@@ -72,15 +74,11 @@ include "templates/conexion.php";
                             <div class="modal-footer">
                             <div id="emailHelp" class="form-text">¿Aun no tienes cuenta?</div>
                                 
-                                <button type="button" class="btn btn-primary">Registrate</button>
+                                <a href="registro.html"><button type="button" class="btn btn-primary">Registrate</button></a>
                             </div>
                             </div>
                         </div>
                         </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
     </nav>
     <?php
     }else{

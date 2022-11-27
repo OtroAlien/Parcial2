@@ -21,7 +21,7 @@ include "templates/conexion.php";
 <body>
     
 <?php
-    if(!isset ($_GET['p'])){
+    if(!isset ($_GET['nombre'])){
 
     } ?>
 
