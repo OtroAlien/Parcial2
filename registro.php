@@ -1,5 +1,6 @@
 <?php
-include "templates/conexion.php";
+session_start();
+require "templates/conexion.php";
 ?>
 
 <!DOCTYPE html>
@@ -84,7 +85,7 @@ include "templates/conexion.php";
                         <div class="col-12 mb-2">
                             <h2 class=text-center>Registrate<h2>
                         </div>
-                        <form action="templates/registro_con.php" method="post" enctype="application/x-www-form-urlencoded">
+                        <form action="templates/registrar.php" method="post" enctype="application/x-www-form-urlencoded">
 
                             <div class="container">
                                 <div class="row">
@@ -117,7 +118,7 @@ include "templates/conexion.php";
                             </div>
                             <div class="mb-3">
                                 <label for="clave" class="form-label">Nombre de Usuario</label>
-                                <input type="password" name="user" class="form-control" id="clave" aria-describedby="clave" required>
+                                <input type="text" name="user" class="form-control" id="clave" aria-describedby="clave" required>
                             </div>
                             <div class="mb-3">
                                 <label for="clave" class="form-label">Contraseña</label>

@@ -86,8 +86,8 @@ require "templates/conexion.php";
                 </div>
 
                 <?php
-    }else{
-    ?>
+                    }else{
+                ?>
                 <div class="collapse navbar-collapse justify-content-md-end" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
@@ -102,8 +102,8 @@ require "templates/conexion.php";
                     </button>
                 </a>
                 <?php
-    }
-    ?>
+                    }
+                ?>
 
     <?php
     if (isset($_GET['e']) && $_GET['e'] == 1){
@@ -116,8 +116,23 @@ require "templates/conexion.php";
 
     <?php
     }else if(isset($_GET['e']) && $_GET['e'] == 2){
-        include "templates/registro.php";
+    ?>
 
+    <script>
+        alert("Perfecto! Ya te registraste capo")
+        window.location = "index.php";
+    </script>
+
+    <?php
+    }else if(isset($_GET['e']) && $_GET['e'] == 3){
+        ?>
+
+    <script>
+        alert("Ya hay un usuario registrado con esas credenciales")
+        window.location = "registro.php";
+    </script>
+
+    <?php
     }
     ?>
             </div>
