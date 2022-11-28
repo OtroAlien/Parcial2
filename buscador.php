@@ -439,7 +439,29 @@ require "templates/conexion.php";
                             echo $detalle['contenido'];
                             ?>
                             </p>
-
+                            <div>
+                            <?php
+                                if(isset($_SESSION['id_usuario'])){ 
+                                    $id_usuario=$_SESSION['id_usuario'];
+                                    $c_like = "SELECT * FROM likes WHERE id_publicacion = $id AND id_usuario= $id_usuario";
+                                    $rta_like = mysqli_query($cnx, $c_like);
+                                    $col_like = mysqli_fetch_assoc($rta_like);
+                                    if($col_like == false){
+                                        
+                                    
+                            ?>
+                                <a href="templates/likear.php?l=1&p=<?php echo $id; ?>"><img width="40rem" height="40rem" src="img/likenot.png" alt="corazon negro"></a>
+                                <?php
+                                    }else{
+                                ?>
+                                <a href="templates/likear.php?l=2&p=<?php echo $id; ?>"><img width="40rem" height="40rem" src="img/like.png" alt="corazon"></a>
+                                <?php
+                                    }
+                                ?>
+                            </div>
+                            <?php
+                                }
+                            ?>
                             <div class="mb-3">
                                 <label for="exampleFormControlTextarea1" class="form-label"></label>
                                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"
