@@ -184,14 +184,22 @@ require "templates/conexion.php";
                         </p>
                     </div>
                     <h2>Tendencias</h2>
-                    <a class="text-decoration-none text-reset tendencias" href="">
+                    <?php
+                        $consulta = "SELECT *, MAX(publicaciones.fecha) FROM publicaciones";
+                        $resultado = mysqli_query($cnx, $consulta);
+                        $columnas = mysqli_fetch_assoc($resultado);
+                        $post_id = $columnas['id_publicacion'];
+                        $consulta_imagenes = "SELECT * FROM imagenes, detalle_imagenes WHERE imagenes.id_imagen = detalle_imagenes.id_imagen AND detalle_imagenes.id_publicacion= '$post_id' ";
+                        $respuesta_imagenes = mysqli_query($cnx, $consulta_imagenes);
+                        $imagen = mysqli_fetch_assoc($respuesta_imagenes);
+                    ?>
+                    <a class="text-decoration-none text-reset tendencias" href="buscador.php?p=<?php echo $columnas['id_publicacion']; ?>">
                         <div class="row">
                             <div class="">
                                 <div class="card" >
-                                    <img src="img/post_placeholder.jpg" class="card-img-top" alt="tendencias">
+                                    <img src="img/posts/<?php echo $imagen['contenido_img'] ?>" class="card-img-top" alt="tendencias">
                                     <div class="card-body">
-                                        <p class="card-text">Some quick example text to build on the card title and make up
-                                            the bulk of the card's content.</p>
+                                    <p class="card-text"><?php echo $columnas['titulo'] ?>.</p>
                                     </div>
                                 </div>
                             </div>
