@@ -1,28 +1,29 @@
 <?php
-include "templates/conexion.php";
+session_start();
+require "templates/conexion.php";
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>JorgeMultimedia</title>
-        <link rel="stylesheet" href="css/style.css">
-        <link rel="shortcut icon" href="img/logo.jpeg" type="image/x-icon">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
-            integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    
-    </head>
-    
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JorgeMultimedia</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="img/logo-jorge.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+</head>
+
 <body>
-         <div class="pattern"></div>
-   
-    <?php
-        if(!isset ($_GET['nombre'])){
-    ?>
+
+    <div class="pattern"></div>
+
+    
 
     <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container-md">
@@ -39,20 +40,105 @@ include "templates/conexion.php";
                     <li class="nav-item">
                         <a class="nav-link" href="buscador.php">Publicaciones</a>
                     </li>
+                
+                <?php
+    if(!isset ($_SESSION['nombre'])){
+        ?>
                     <li class="nav-item">
                         <a class="nav-link" href="#contacto">Contacto</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.php">Cerrar sesión</a>
-                    </li>
                 </ul>
-            </div>
-        </div>
-    </nav>
+                <button type="button" class="btn btn-primary mx-3 rounded" data-bs-toggle="modal"
+                    data-bs-target="#exampleModal">
+                    Ingresar
+                </button>
+
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Ya tenes cuenta? Ingresa</h1>
+                                <button type="button" class="btn-close rounded" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="templates/login.php" method="post" enctype="application/x-www-form-urlencoded">
+                                    <div class="mb-3">
+                                        <label for="exampleInputEmail1" class="form-label">Email</label>
+                                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="exampleInputPassword1" class="form-label">Password</label>
+                                        <input type="password" class="form-control" id="exampleInputPassword1" name="clave">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary rounded">Ingresar</button>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <div id="emailHelp" class="form-text">¿Aun no tienes cuenta?</div>
+
+                                <a href="registro.php"><button type="button"
+                                        class="btn btn-primary rounded">Registrate</button></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <?php
+                    }else{
+                ?>
+                <div class="collapse navbar-collapse justify-content-md-end" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="perfil.php">Mi perfil</a>
+                        </li>
+                    </ul>
+                </div>
+                <a href="templates/cerrar.php">
+                    <button type="button" class="btn btn-primary mx-3 rounded" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal">
+                        Cerrar Sesion
+                    </button>
+                </a>
+                <?php
+                    }
+                ?>
+
+    <?php
+    if (isset($_GET['e']) && $_GET['e'] == 1){
+    ?>
+
+    <script>
+        alert("Usuario o contraseña incorrectos")
+        window.location = "index.php";
+    </script>
+
+    <?php
+    }else if(isset($_GET['e']) && $_GET['e'] == 2){
+    ?>
+
+    <script>
+        alert("Perfecto! Ya te registraste capo")
+        window.location = "index.php";
+    </script>
+
+    <?php
+    }else if(isset($_GET['e']) && $_GET['e'] == 3){
+        ?>
+
+    <script>
+        alert("Ya hay un usuario registrado con esas credenciales")
+        window.location = "registro.php";
+    </script>
 
     <?php
     }
     ?>
+            </div>
+        </div>
+    </nav>
+ 
       <div class="container mt-4 mb-4 p-3 d-flex justify-content-center rounded-4">
         <div class="card p-4">
             <div class=" image d-flex flex-column justify-content-center align-items-center">
