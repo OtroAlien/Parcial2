@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2022-11-27 18:08:32
+Date: 2022-11-27 22:45:50
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -79,17 +79,21 @@ CREATE TABLE `detalle_imagenes` (
   KEY `id_imagen` (`id_imagen`) USING BTREE,
   CONSTRAINT `imegenes` FOREIGN KEY (`id_imagen`) REFERENCES `imagenes` (`id_imagen`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `publicaciones` FOREIGN KEY (`id_publicacion`) REFERENCES `publicaciones` (`id_publicacion`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 
 -- ----------------------------
 -- Records of detalle_imagenes
 -- ----------------------------
 INSERT INTO `detalle_imagenes` VALUES ('1', '1', '1');
-INSERT INTO `detalle_imagenes` VALUES ('2', '2', '1');
-INSERT INTO `detalle_imagenes` VALUES ('3', '3', '1');
-INSERT INTO `detalle_imagenes` VALUES ('4', '4', '9');
-INSERT INTO `detalle_imagenes` VALUES ('5', '5', '9');
-INSERT INTO `detalle_imagenes` VALUES ('6', '6', '10');
+INSERT INTO `detalle_imagenes` VALUES ('2', '2', '2');
+INSERT INTO `detalle_imagenes` VALUES ('3', '3', '3');
+INSERT INTO `detalle_imagenes` VALUES ('4', '4', '4');
+INSERT INTO `detalle_imagenes` VALUES ('5', '5', '5');
+INSERT INTO `detalle_imagenes` VALUES ('6', '6', '6');
+INSERT INTO `detalle_imagenes` VALUES ('7', '7', '7');
+INSERT INTO `detalle_imagenes` VALUES ('8', '8', '8');
+INSERT INTO `detalle_imagenes` VALUES ('9', '9', '9');
+INSERT INTO `detalle_imagenes` VALUES ('10', '10', '10');
 
 -- ----------------------------
 -- Table structure for detalle_videos
@@ -122,7 +126,7 @@ INSERT INTO `detalle_videos` VALUES ('6', '6', '6');
 DROP TABLE IF EXISTS `fotos_perfil`;
 CREATE TABLE `fotos_perfil` (
   `id_foto` int(11) NOT NULL,
-  `contenido` varchar(255) DEFAULT NULL,
+  `contenido_pfp` varchar(255) DEFAULT '',
   `id_usuario` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_foto`) USING BTREE,
   KEY `fotos_perfil` (`id_foto`) USING BTREE
@@ -131,6 +135,13 @@ CREATE TABLE `fotos_perfil` (
 -- ----------------------------
 -- Records of fotos_perfil
 -- ----------------------------
+INSERT INTO `fotos_perfil` VALUES ('1', 'jorgue.jpg', '1');
+INSERT INTO `fotos_perfil` VALUES ('2', 'angela.jpg', '2');
+INSERT INTO `fotos_perfil` VALUES ('3', 'ricardo.jpg', '3');
+INSERT INTO `fotos_perfil` VALUES ('4', 'francisco.jpg', '5');
+INSERT INTO `fotos_perfil` VALUES ('5', 'caballero.jpg', '6');
+INSERT INTO `fotos_perfil` VALUES ('6', 'daniel.jpg', '7');
+INSERT INTO `fotos_perfil` VALUES ('7', 'camila.jpg', '10');
 
 -- ----------------------------
 -- Table structure for imagenes
@@ -139,19 +150,22 @@ DROP TABLE IF EXISTS `imagenes`;
 CREATE TABLE `imagenes` (
   `id_imagen` int(11) NOT NULL AUTO_INCREMENT,
   `contenido_img` varchar(255) NOT NULL,
-  `file` varchar(255) NOT NULL,
   PRIMARY KEY (`id_imagen`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 
 -- ----------------------------
 -- Records of imagenes
 -- ----------------------------
-INSERT INTO `imagenes` VALUES ('1', 'noga_logo.png', '');
-INSERT INTO `imagenes` VALUES ('2', 'noga_packaging.png', '');
-INSERT INTO `imagenes` VALUES ('3', 'noga_mockup.png', '');
-INSERT INTO `imagenes` VALUES ('4', 'ml_inicio.png', '');
-INSERT INTO `imagenes` VALUES ('5', 'ml_producto.png', '');
-INSERT INTO `imagenes` VALUES ('6', 'afa_demo.png', '');
+INSERT INTO `imagenes` VALUES ('1', 'noga_img.jpg');
+INSERT INTO `imagenes` VALUES ('2', 'pepito_img.jpg');
+INSERT INTO `imagenes` VALUES ('3', 'mostaza_img.jpg');
+INSERT INTO `imagenes` VALUES ('4', 'jujuy.jpg');
+INSERT INTO `imagenes` VALUES ('5', 'villavicencio.jpg');
+INSERT INTO `imagenes` VALUES ('6', 'duck_arena.jpg');
+INSERT INTO `imagenes` VALUES ('7', 'arg_cook_vr.jpg');
+INSERT INTO `imagenes` VALUES ('8', 'b.jpg');
+INSERT INTO `imagenes` VALUES ('9', 'ml_img.jpg');
+INSERT INTO `imagenes` VALUES ('10', 'afa.jpg');
 
 -- ----------------------------
 -- Table structure for likes
@@ -214,16 +228,16 @@ CREATE TABLE `publicaciones` (
 -- ----------------------------
 -- Records of publicaciones
 -- ----------------------------
-INSERT INTO `publicaciones` VALUES ('1', '1', '2022-10-12 20:19:49', 'ESTE ES EL CONTENIDO DEL POST', 'Re branding Noga NET', '6');
-INSERT INTO `publicaciones` VALUES ('2', '2', '2022-10-10 20:25:41', 'ESTE ES EL CONTENIDO DEL POST', 'Identidad de marca resto pepito', '6');
-INSERT INTO `publicaciones` VALUES ('3', '2', '2022-10-25 20:26:09', 'ESTE ES EL CONTENIDO DEL POST', 'Packaging MOSTAZA', '2');
-INSERT INTO `publicaciones` VALUES ('4', '11', '2022-10-04 20:27:14', 'ESTE ES EL CONTENIDO DEL POST', 'Identidad corporativa Jujuy', '10');
-INSERT INTO `publicaciones` VALUES ('5', '11', '2022-10-06 20:28:27', 'ESTE ES EL CONTENIDO DEL POST', 'Diseño editorial Villavicencio', '10');
-INSERT INTO `publicaciones` VALUES ('6', '3', '2022-09-20 20:29:00', 'ESTE ES EL CONTENIDO DEL POST', 'Modelos para Duck ARENA', '7');
-INSERT INTO `publicaciones` VALUES ('7', '3', '2022-09-21 20:31:21', 'ESTE ES EL CONTENIDO DEL POST', 'Desarrollo Argentinian cook VR', '7');
-INSERT INTO `publicaciones` VALUES ('8', '3', '2022-08-11 20:32:03', 'ESTE ES EL CONTENIDO DEL POST', 'Presentacion B (juego de cafrado)', '7');
-INSERT INTO `publicaciones` VALUES ('9', '5', '2022-09-30 20:32:41', 'ESTE ES EL CONTENIDO DEL POST', 'Front End MercadoLibre', '2');
-INSERT INTO `publicaciones` VALUES ('10', '5', '2022-10-11 20:34:10', 'ESTE ES EL CONTENIDO DEL POST', 'Desarrollo Mobile AFA', '9');
+INSERT INTO `publicaciones` VALUES ('1', '1', '2022-10-12 20:19:49', 'Hemos finalizado el Rebranding de Noga NET, estamos orgullosos de nuestro trabajo y nuestra participacion con la marca', 'Re branding Noga NET', '6');
+INSERT INTO `publicaciones` VALUES ('2', '2', '2022-10-10 20:25:41', 'Resto Pepito confió en nosotros para su identidad de marca, los invitamos a visitar su local en Ituzaingó', 'Identidad de marca resto pepito', '6');
+INSERT INTO `publicaciones` VALUES ('3', '2', '2022-10-25 20:26:09', 'Mostaza decidió cambiar su packaging y les brindamos nuestros servicios', 'Packaging MOSTAZA', '2');
+INSERT INTO `publicaciones` VALUES ('4', '11', '2022-10-04 20:27:14', 'Jujuy es una de las provincias mas lindas del pais, el desarrollo de su identidad corporativa fue bastante complicado, pero muy complaciente!', 'Identidad corporativa Jujuy', '10');
+INSERT INTO `publicaciones` VALUES ('5', '11', '2022-10-06 20:28:27', 'Les mostramos nuestro camino en el desarrollo del diseño editorial de Villavicencio', 'Diseño editorial Villavicencio', '10');
+INSERT INTO `publicaciones` VALUES ('6', '3', '2022-09-20 20:29:00', 'Nuestro equipo de modelado 3D tiene listos los assets para el anciado juego duck arena', 'Modelos para Duck ARENA', '7');
+INSERT INTO `publicaciones` VALUES ('7', '3', '2022-09-21 20:31:21', 'Argentinian cook VR estara pasando a etapa de beta abierta durante las proximas 2 semanas', 'Desarrollo Argentinian cook VR', '7');
+INSERT INTO `publicaciones` VALUES ('8', '3', '2022-08-11 20:32:03', 'cafrado yo se que estas leyendo esto por favor decime que jugaste al outer wilds', 'Presentacion B (juego de cafrado)', '7');
+INSERT INTO `publicaciones` VALUES ('9', '5', '2022-09-30 20:32:41', 'Mercado libre nos contactó para una actualizacion en la estructura front end del sitio, a los clientes no los decepcionamos!', 'Front End MercadoLibre', '2');
+INSERT INTO `publicaciones` VALUES ('10', '5', '2022-10-11 20:34:10', 'Las aplicaciones de Futbol argentino estan creciendo y nosotros no nos quedamos atras.', 'Desarrollo Mobile AFA', '9');
 
 -- ----------------------------
 -- Table structure for usuarios
@@ -253,16 +267,16 @@ CREATE TABLE `usuarios` (
 -- ----------------------------
 -- Records of usuarios
 -- ----------------------------
-INSERT INTO `usuarios` VALUES ('1', 'Jorge', 'Jorgueller', 'thesiiiip0soscarrao', '3', 'jorgelin', 'jorge@gmail.com', null, null, null, null, null);
-INSERT INTO `usuarios` VALUES ('2', 'Angela', 'Rodriguez', 'holasoyangi', '1', 'angelitaaaa', 'angela@ange1.com', null, null, null, null, null);
-INSERT INTO `usuarios` VALUES ('3', 'Ricardo', 'Garinzo', 'rgarin66', '2', 'rgarinzoart', 'rgarinzo66@rgar.com', null, null, null, null, null);
+INSERT INTO `usuarios` VALUES ('1', 'Jorge', 'Jorgueller', 'thesiiiip0soscarrao', '3', 'jorgelin', 'jorge@gmail.com', null, null, null, null, '1');
+INSERT INTO `usuarios` VALUES ('2', 'Angela', 'Rodriguez', 'holasoyangi', '1', 'angelitaaaa', 'angela@ange1.com', null, null, null, null, '2');
+INSERT INTO `usuarios` VALUES ('3', 'Ricardo', 'Garinzo', 'rgarin66', '2', 'rgarinzoart', 'rgarinzo66@rgar.com', null, null, null, null, '3');
 INSERT INTO `usuarios` VALUES ('4', 'Antonio', 'Banderas', 'bananas2323', '3', 'bantonio32', 'bantonio22@gmail.com', null, null, null, null, null);
-INSERT INTO `usuarios` VALUES ('5', 'Francisco', 'Medina', 'pinchila2', '1', 'Xxtheslayer23xX', 'francikpo2003@gmail.com', null, null, null, null, null);
-INSERT INTO `usuarios` VALUES ('6', 'Francisco', 'Caballero', 'boligoma2323', '2', 'fcaballero', 'fcaballero@info.com', null, null, null, null, null);
-INSERT INTO `usuarios` VALUES ('7', 'Daniel', 'Sosa', 'otoño2005', '1', 'danidanisos', 'danidani@sos.com', null, null, null, null, null);
+INSERT INTO `usuarios` VALUES ('5', 'Francisco', 'Medina', 'pinchila2', '1', 'Xxtheslayer23xX', 'francikpo2003@gmail.com', null, null, null, null, '4');
+INSERT INTO `usuarios` VALUES ('6', 'Francisco', 'Caballero', 'boligoma2323', '2', 'fcaballero', 'fcaballero@info.com', null, null, null, null, '5');
+INSERT INTO `usuarios` VALUES ('7', 'Daniel', 'Sosa', 'otoño2005', '1', 'danidanisos', 'danidani@sos.com', null, null, null, null, '6');
 INSERT INTO `usuarios` VALUES ('8', 'Stan', 'Lee', 'spiderman2', '3', 'realstanlee', 'realstanlee@info.com', null, null, null, null, null);
 INSERT INTO `usuarios` VALUES ('9', 'Lionel', 'Messi', 'fulbo', '1', 'liomessi', 'liomessi10@gmail.com', null, null, null, null, null);
-INSERT INTO `usuarios` VALUES ('10', 'Camila', 'Romero', 'imprimirverdades', '2', 'camirome', 'camiromero@romart.com', null, null, null, null, null);
+INSERT INTO `usuarios` VALUES ('10', 'Camila', 'Romero', 'imprimirverdades', '2', 'camirome', 'camiromero@romart.com', null, null, null, null, '7');
 
 -- ----------------------------
 -- Table structure for usuarios_areas

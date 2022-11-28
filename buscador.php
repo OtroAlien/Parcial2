@@ -99,23 +99,49 @@ include "templates/conexion.php";
                 <input type="submit" value="buscar" class="btn btn-info btn-sm rounded">
             </form>
         </aside>
-        <div class="btn-group rounded">
-            <input class="btn btn-primary mx-1 rounded " type="button" value="filtro popular 1">
-            <input class="btn btn-primary mx-1 rounded" type="button" value="filtro popular 2">
-            <div class="dropdown ">
-                <button class="btn btn-secondary dropdown-toggle rounded" type="button" data-bs-toggle="dropdown"
-                    aria-expanded="false">
-                    Dropdown button
-                </button>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">filtro popular 3</a></li>
-                    <li><a class="dropdown-item" href="#">filtro popular 4</a></li>
-                    <li><a class="dropdown-item" href="#">filtro popular 5</a></li>
-                </ul>
-            </div>
-        </div>
+        <form action="buscador.php" class="btn-group rounded">
+                <select name="area" class="dropdown ">
+                    <button class="btn btn-secondary dropdown-toggle rounded" type="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Filtros
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><option type="button" value=0> Todas </option></li>
+                            <?php 
+                            $consulta_areas = "SELECT * FROM areas";
+                            $resultados_areas = mysqli_query($cnx, $consulta_areas);
+                            while ($cols_areas = mysqli_fetch_assoc($resultados_areas)){
+                            ?>
+                        <li><option type="button" value=<?php echo $cols_areas['id_area'];?>>
+                        <?php echo $cols_areas['area']?> </option></li>
+                    <?php
+                    }
+                    ?>
+                    </ul>
+                </select>
+            <input type="submit" value="filtrar" class="btn btn-info btn-sm rounded">
+        </form>
     </div>
+    <?php
+        if( isset($_GET['area'])){
+            $area = $_GET['area'];
+            echo $area;
+            if($area == 0){
+            $marca="%";
+            }else{
+            $el_area = mysqli_query($cnx,"SELECT * FROM areas WHERE id_area=$area");
+            $titulo = mysqli_fetch_assoc($el_area);
 
+            echo "<p> Publicaciones de ". $titulo['area']."</p>";
+        }
+        $consulta = "SELECT * FROM publicaciones INNER JOIN areas ON publicaciones.id_area = areas.id_area WHERE publicaciones.id_area LIKE '$area'";
+        $resultado = mysqli_query($cnx, $consulta);
+        var_dump($consulta);
+        }else{
+            $consulta = "SELECT * FROM publicaciones";
+            $resultado = mysqli_query($cnx, $consulta);
+        }
+    ?>
     <?php
     }else{
     ?>
