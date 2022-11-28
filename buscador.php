@@ -173,26 +173,6 @@ require "templates/conexion.php";
         </form>
     </div>
     <?php
-        if( isset($_GET['area'])){
-            $area = $_GET['area'];
-            echo $area;
-            if($area == 0){
-            $marca="%";
-            }else{
-            $el_area = mysqli_query($cnx,"SELECT * FROM areas WHERE id_area=$area");
-            $titulo = mysqli_fetch_assoc($el_area);
-
-            echo "<p> Publicaciones de ". $titulo['area']."</p>";
-        }
-        $consulta = "SELECT * FROM publicaciones INNER JOIN areas ON publicaciones.id_area = areas.id_area WHERE publicaciones.id_area LIKE '$area'";
-        $resultado = mysqli_query($cnx, $consulta);
-        var_dump($consulta);
-        }else{
-            $consulta = "SELECT * FROM publicaciones";
-            $resultado = mysqli_query($cnx, $consulta);
-        }
-    ?>
-    <?php
     }else{
     ?>
     <!--boton volver-->
@@ -228,6 +208,24 @@ require "templates/conexion.php";
         }
 
         ?>
+    <?php
+        if( isset($_GET['area'])){
+            $area = $_GET['area'];
+            if($area == 0){
+            $area="%";
+            }else{
+            $el_area = mysqli_query($cnx,"SELECT * FROM areas WHERE id_area=$area");
+            $titulo = mysqli_fetch_assoc($el_area);
+
+            echo "<p class='col-12'> Publicaciones de ". $titulo['area']."</p>";
+            }
+            $consulta = "SELECT * FROM publicaciones INNER JOIN areas ON publicaciones.id_area = areas.id_area WHERE publicaciones.id_area LIKE '$area'";
+            $resultado = mysqli_query($cnx, $consulta);
+        }else{
+            $consulta = "SELECT * FROM publicaciones";
+            $resultado = mysqli_query($cnx, $consulta);
+        }
+    ?>
 
     <!--
         Para otras cosas:
@@ -312,34 +310,6 @@ require "templates/conexion.php";
                             ?>
                             </p><br>
 
-
-                                        <?php 
-                                            if(isset($_SESSION['id_usuario'])){
-                                                $id_usuario = $_SESSION['id_usuario'];
-                                                $c_like = "SELECT * FROM likes WHERE id_publicacion = ?? AND id_usuario = $id_usuario";
-                                                $rta_like = mysqli_query($cnx, $c_like);
-                                                $col_like = mysqli_fetch_assoc($rta_like);
-                                                if($col_like == false){
-                                        ?>
-
-                            <div class="likes">
-                                <a href="templates/likear.php?l=1&p=<?php echo $p; ?>"> <img src="img/like.png"
-                                        alt=""></a>
-
-                                <?php
-                                    }else{}
-                                    ?>
-                                <a href="templates/likear.php?l=2&p="><img src="img/liken't.png" alt=""></a>
-                            </div>
-
-
-                            <?php
-                                    }
-                                    ?>
-
-
-
-                            <br>
                             <?php
                             $consulta_comentarios = "SELECT * from comentarios INNER JOIN publicaciones
                             ON comentarios.id_publicacion = publicaciones.id_publicacion
@@ -468,36 +438,8 @@ require "templates/conexion.php";
                             <?php
                             echo $detalle['contenido'];
                             ?>
-                            </p><br>
+                            </p>
 
-
-                            <?php 
-                                            if(isset($_SESSION['id_usuario'])){
-                                                $id_usuario = $_SESSION['id_usuario'];
-                                                $c_like = "SELECT * FROM likes WHERE id_publicacion = ?? AND id_usuario = $id_usuario";
-                                                $rta_like = mysqli_query($cnx, $c_like);
-                                                $col_like = mysqli_fetch_assoc($rta_like);
-                                                if($col_like == false){
-                                            ?>
-
-                            <div class="likes">
-                                <a href="templates/likear.php?l=1&p=<?php echo $p; ?>"> <img src="img/like.png"
-                                        alt=""></a>
-
-                                <?php
-                                    }else{}
-                                    ?>
-                                <a href="templates/likear.php?l=2&p="><img src="img/liken't.png" alt=""></a>
-                            </div>
-
-
-                            <?php
-                                    }
-                                    ?>
-
-
-
-                            <br>
                             <div class="mb-3">
                                 <label for="exampleFormControlTextarea1" class="form-label"></label>
                                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"
@@ -557,8 +499,25 @@ require "templates/conexion.php";
         }
         ?>
 
+        <div>
+            <div class="m-4">
+                <br>
+            </div>
+            <div class="m-4">
+                <br>
+            </div>
+            <div class="m-4">
+                <br>
+            </div>
+            <div class="m-4">
+                <br>
+            </div>
+            <div class="m-4">
+                <br>
+            </div>
+        </div>
 
-        <footer>
+        <footer class="mt-n200px">
             <div class="container">
                 <div class="row">
                     <div class="col">
@@ -596,9 +555,6 @@ require "templates/conexion.php";
             integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
         </script>
         <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
-        <?php
-        mysqli_close($cnx);
-        ?>
 </body>
 
 </html>
