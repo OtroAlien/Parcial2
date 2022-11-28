@@ -177,6 +177,7 @@ include "templates/conexion.php";
                         </div>
                         <div class="vtimeline-block p-4">
                                     <?php 
+                                        $post_id_comment=$columnas['id_publicacion'];
                                         $post_id=$columnas['id_usuario'];
                                         $consulta_nombres = "SELECT publicaciones.id_usuario, usuarios.id_usuario, usuarios.nombre, usuarios.apellido, usuarios.id_foto FROM publicaciones, usuarios WHERE usuarios.id_usuario = $post_id";
                                         $respuesta_nombres = mysqli_query($cnx, $consulta_nombres);
@@ -186,11 +187,22 @@ include "templates/conexion.php";
                                         $fecha_cortada_dia = $fecha_cortada[2];
                                         $fecha_cortada_dia_restado = substr($fecha_cortada_dia, 0, 2);
                                         $fecha_invertida =  $fecha_cortada_dia_restado . "/" . $fecha_cortada[1] . "/" . $fecha_cortada[0];
+                                        $consulta_imagenes = "SELECT * FROM imagenes, detalle_imagenes WHERE imagenes.id_imagen = detalle_imagenes.id_imagen AND detalle_imagenes.id_publicacion=$post_id_comment";
+                                        $respuesta_imagenes = mysqli_query($cnx, $consulta_imagenes);
+                                        $imagen = mysqli_fetch_assoc($respuesta_imagenes);
+                                        $consulta_pfp ="SELECT * FROM fotos_perfil WHERE id_usuario=$post_id";
+                                        $respuesta_pfp = mysqli_query($cnx,$consulta_pfp);
+                                        $pfp = mysqli_fetch_assoc($respuesta_pfp);
+                                        if($pfp == false){
+                                            $pfp_final = "default_pfp.png";
+                                        }else{
+                                            $pfp_final = $pfp['contenido_pfp'];
+                                        }
                                     ?> 
                             <ul class="post-meta list-inline">
                                 <li class="list-inline-item">
                                     <i class="fa fa-user-circle-o"></i> <a href="buscador.php?p=<?php echo $columnas['id_publicacion']; ?>"><img class="pfp"
-                                            style="width: 50px;" src="img/pfp/default_pfp.png" alt=""></a>
+                                            style="width: 50px;" src="img/pfp/<?php echo $pfp_final?>" alt="<?php echo $pfp_final?>"></a>
                                 </li>     
                                 <li class="list-inline-item">
                                     <i class="fa fa-user-circle-o"></i> <a class="post_info"
@@ -216,7 +228,7 @@ include "templates/conexion.php";
                                 ?>
                             </h3>
                             </a>
-                            <a href="buscador.php?p=<?php echo $columnas['id_publicacion']; ?>"><img src="https://via.placeholder.com/700x400" alt=""
+                            <a href="buscador.php?p=<?php echo $columnas['id_publicacion']; ?>"><img src="img/posts/<?php echo $imagen['contenido_img'] ?>" alt="<?php echo $imagen['contenido_img'] ?>"
                                     class="img-fluid mb20"></a>
                             <p>
                             <?php
@@ -253,7 +265,6 @@ include "templates/conexion.php";
 
                             <br>
                             <?php
-                            $post_id_comment=$columnas['id_publicacion'];
                             $consulta_comentarios = "SELECT * from comentarios INNER JOIN publicaciones
                             ON comentarios.id_publicacion = publicaciones.id_publicacion
                             INNER JOIN usuarios ON comentarios.id_usuario = usuarios.id_usuario
@@ -266,12 +277,20 @@ include "templates/conexion.php";
                                 $fecha_cortada_comment_dia = $fecha_cortada_comment[2];
                                 $fecha_cortada_comment_dia_restado = substr($fecha_cortada_comment_dia, 0, 2);
                                 $fecha_invertida_comment =  $fecha_cortada_comment_dia_restado . "/" . $fecha_cortada_comment[1] . "/" . $fecha_cortada_comment[0];
+                                $consulta_pfp_comment ="SELECT * FROM fotos_perfil WHERE id_usuario=$col_comentario[id_usuario]";
+                                $respuesta_pfp_comment = mysqli_query($cnx,$consulta_pfp_comment);
+                                $pfp_comment = mysqli_fetch_assoc($respuesta_pfp_comment);
+                                if($pfp_comment == false){
+                                            $pfp_comment_final = "default_pfp.png";
+                                        }else{
+                                            $pfp_comment_final = $pfp_comment['contenido_pfp'];
+                                        }
                             ?>
                             <div class="comentario p-4">
                                 <ul class="post-meta list-inline">
                                     <li class="list-inline-item">
                                         <i class="fa fa-user-circle-o"></i> <a href="#"><img class="pfp"
-                                                style="width: 50px;" src="img/pfp/default_pfp.png" alt=""></a>
+                                            style="width: 50px;" src="img/pfp/<?php echo $pfp_comment_final?>" alt="<?php echo $pfp_comment_final?>"></a>
                                     </li>
                                     <li class="list-inline-item">
                                         <i class="fa fa-user-circle-o"></i> <a class="post_info"
@@ -313,10 +332,22 @@ include "templates/conexion.php";
                     $resultado_detalle = mysqli_query($cnx, $cons_detalle);
                     $detalle = mysqli_fetch_assoc($resultado_detalle);
                     $fecha_base=$detalle["fecha"];
+                    $id_pfp = $detalle["id_usuario"];
                     $fecha_cortada = explode("-", $fecha_base);
                     $fecha_cortada_dia = $fecha_cortada[2];
                     $fecha_cortada_dia_restado = substr($fecha_cortada_dia, 0, 2);
                     $fecha_invertida =  $fecha_cortada_dia_restado . "/" . $fecha_cortada[1] . "/" . $fecha_cortada[0];
+                    $consulta_imagenes = "SELECT * FROM imagenes, detalle_imagenes WHERE imagenes.id_imagen = detalle_imagenes.id_imagen AND detalle_imagenes.id_publicacion=$id";
+                    $respuesta_imagenes = mysqli_query($cnx, $consulta_imagenes);
+                    $imagen = mysqli_fetch_assoc($respuesta_imagenes);
+                    $consulta_pfp ="SELECT * FROM fotos_perfil WHERE id_usuario=$id_pfp";
+                    $respuesta_pfp = mysqli_query($cnx,$consulta_pfp);
+                    $pfp = mysqli_fetch_assoc($respuesta_pfp);
+                        if($pfp == false){
+                            $pfp_final = "default_pfp.png";
+                        }else{
+                            $pfp_final = $pfp['contenido_pfp'];
+                        }
                     ?>
                     <!--no funciona!!!(no se porque ayuda)-->
                     <?php
@@ -336,7 +367,7 @@ include "templates/conexion.php";
                             <ul class="post-meta list-inline">
                                 <li class="list-inline-item">
                                     <i class="fa fa-user-circle-o"></i> <a href="#"><img class="pfp"
-                                            style="width: 50px;" src="img/pfp/default_pfp.png" alt=""></a>
+                                            style="width: 50px;" src="img/pfp/<?php echo $pfp_final?>" alt="<?php echo $pfp_final?>"></a>
                                 </li>
                                 <li class="list-inline-item">
                                     <i class="fa fa-user-circle-o"></i> 
@@ -355,7 +386,7 @@ include "templates/conexion.php";
                                 ?>
                                 </h3>
                             </h2>
-                            <a href="#"><img src="https://via.placeholder.com/700x400" alt=""
+                            <a href="#"><img src="img/posts/<?php echo $imagen['contenido_img'] ?>" alt="<?php echo $imagen['contenido_img'] ?>"
                                     class="img-fluid mb20"></a>
                             <p>
                             <?php
@@ -409,12 +440,20 @@ include "templates/conexion.php";
                                 $fecha_cortada_comment_dia = $fecha_cortada_comment[2];
                                 $fecha_cortada_comment_dia_restado = substr($fecha_cortada_comment_dia, 0, 2);
                                 $fecha_invertida_comment =  $fecha_cortada_comment_dia_restado . "/" . $fecha_cortada_comment[1] . "/" . $fecha_cortada_comment[0];
+                                $consulta_pfp_comment ="SELECT * FROM fotos_perfil WHERE id_usuario=$col_comentario[id_usuario]";
+                                $respuesta_pfp_comment = mysqli_query($cnx,$consulta_pfp_comment);
+                                $pfp_comment = mysqli_fetch_assoc($respuesta_pfp_comment);
+                                if($pfp_comment == false){
+                                    $pfp_comment_final = "default_pfp.png";
+                                }else{
+                                    $pfp_comment_final = $pfp_comment['contenido_pfp'];
+                                }
                             ?>
                             <div class="comentario p-4">
                                 <ul class="post-meta list-inline">
                                     <li class="list-inline-item">
                                         <i class="fa fa-user-circle-o"></i> <a href="#"><img class="pfp"
-                                                style="width: 50px;" src="img/pfp/default_pfp.png" alt=""></a>
+                                                style="width: 50px;" src="img/pfp/<?php echo $pfp_comment_final?>" alt="<?php echo $pfp_comment_final?>" alt=""></a>
                                     </li>
                                     <li class="list-inline-item">
                                         <i class="fa fa-user-circle-o"></i> <a class="post_info"
