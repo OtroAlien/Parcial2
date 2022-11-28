@@ -463,9 +463,13 @@ require "templates/conexion.php";
                                 }
                             ?>
                             <div class="mb-3">
-                                <label for="exampleFormControlTextarea1" class="form-label"></label>
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"
-                                placeholder="Deja tu comentario aquí"></textarea>
+
+                                <form action="templates/comentar.php" method="post">
+                                    <textarea name="comentario" class="form-control" id="exampleFormControlTextarea1" cols="30" rows="5"
+                                    placeholder="Deja tu comentario aquí"></textarea>
+                                    <input type="hidden" name="id_publicacion" value="<?php echo $id ?>">
+                                    <button type="submit">Enviar</button>
+                                </form>
                             </div>
                             <?php
                             $consulta_comentarios = "SELECT * from comentarios INNER JOIN publicaciones
