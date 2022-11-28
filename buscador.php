@@ -173,26 +173,6 @@ require "templates/conexion.php";
         </form>
     </div>
     <?php
-        if( isset($_GET['area'])){
-            $area = $_GET['area'];
-            echo $area;
-            if($area == 0){
-            $marca="%";
-            }else{
-            $el_area = mysqli_query($cnx,"SELECT * FROM areas WHERE id_area=$area");
-            $titulo = mysqli_fetch_assoc($el_area);
-
-            echo "<p> Publicaciones de ". $titulo['area']."</p>";
-        }
-        $consulta = "SELECT * FROM publicaciones INNER JOIN areas ON publicaciones.id_area = areas.id_area WHERE publicaciones.id_area LIKE '$area'";
-        $resultado = mysqli_query($cnx, $consulta);
-        var_dump($consulta);
-        }else{
-            $consulta = "SELECT * FROM publicaciones";
-            $resultado = mysqli_query($cnx, $consulta);
-        }
-    ?>
-    <?php
     }else{
     ?>
     <!--boton volver-->
@@ -228,6 +208,24 @@ require "templates/conexion.php";
         }
 
         ?>
+    <?php
+        if( isset($_GET['area'])){
+            $area = $_GET['area'];
+            if($area == 0){
+            $area="%";
+            }else{
+            $el_area = mysqli_query($cnx,"SELECT * FROM areas WHERE id_area=$area");
+            $titulo = mysqli_fetch_assoc($el_area);
+
+            echo "<p class='col-12'> Publicaciones de ". $titulo['area']."</p>";
+            }
+            $consulta = "SELECT * FROM publicaciones INNER JOIN areas ON publicaciones.id_area = areas.id_area WHERE publicaciones.id_area LIKE '$area'";
+            $resultado = mysqli_query($cnx, $consulta);
+        }else{
+            $consulta = "SELECT * FROM publicaciones";
+            $resultado = mysqli_query($cnx, $consulta);
+        }
+    ?>
 
     <!--
         Para otras cosas:
